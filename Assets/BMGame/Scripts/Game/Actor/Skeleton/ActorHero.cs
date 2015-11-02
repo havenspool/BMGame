@@ -9,7 +9,7 @@ public class ActorHero : ActorBase{
 		
 	}
 	
-	void Update (){
+	void FixedUpdate () {
 		
 	}
 }

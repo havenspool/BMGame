@@ -38,4 +38,5 @@ public class ActorBase : MonoBehaviour {
 	protected virtual void OnStateStart(Spine.AnimationState state,int trackIndex){}
 	protected virtual void OnStateEnd(Spine.AnimationState state,int trackIndex){}
 	protected virtual void OnStateComplete(Spine.AnimationState state,int trackIndex,int loop){}
+
 }

@@ -9,8 +9,8 @@ public class ActorEnemy : ActorBase{
 	
 	}
 
-	void Update (){
-	
+	void FixedUpdate () {
+		
 	}
 }
 
