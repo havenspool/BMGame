@@ -1,7 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ActorVO : IActorVO {
+public class ActorVO{
+
+	public string currentAnimation;
+
+	public float blood;
+	
+	public float allBlood;
+	
+	public float rateBlood{
+		get{
+			return blood/allBlood;
+		}
+	}
 
 	public string die{
 		get{

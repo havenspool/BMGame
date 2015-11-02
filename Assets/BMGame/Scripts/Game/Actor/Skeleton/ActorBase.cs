@@ -7,9 +7,9 @@ public class ActorBase : MonoBehaviour {
 
 	protected SkeletonAnimation skeletonAnimation;
 
-	protected string currentAnimation;
+	protected ActorVO actorVO;
 
-	protected void init(){
+	protected virtual void init(){
 		skeletonAnimation = gameObject.GetComponent<SkeletonAnimation>();
 	}
 
@@ -21,8 +21,8 @@ public class ActorBase : MonoBehaviour {
 	}
 
 	protected void setAnimation(string name,bool loop){
-		if(currentAnimation != name){
-			currentAnimation = name;
+		if(actorVO.currentAnimation != name){
+			actorVO.currentAnimation = name;
 			skeletonAnimation.Reset();
 			skeletonAnimation.loop = loop;
 			skeletonAnimation.AnimationName = name;
@@ -31,7 +31,7 @@ public class ActorBase : MonoBehaviour {
 	}
 
 	protected bool isAnimationName(string name){
-		return currentAnimation == name;
+		return actorVO.currentAnimation == name;
 	}
 
 	protected virtual void OnStateEvent(Spine.AnimationState state,int trackIndex,Spine.Event e){}

@@ -3,7 +3,12 @@ using System.Collections;
 /**
  * jski
  */
-public class ActorEnemy : ActorBase{
+public class ActorEnemy : Actor{
+
+	protected override void init(){
+		base.init();
+		actorVO = new EnemyVO();
+	}
 
 	void Start (){
 	

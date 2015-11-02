@@ -3,6 +3,10 @@ using System.Collections;
 
 public class EnemyVO : ActorVO {
 
+	public EnemyVO():base(){
+		allBlood = 100f;
+	}
+
 	public string die{
 		get{
 			return "enDie";//30f  1s

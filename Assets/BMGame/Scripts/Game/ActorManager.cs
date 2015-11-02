@@ -15,8 +15,8 @@ public class ActorManager : MonoBehaviour {
 //	void FixedUpdate () {}
 
 	void Update(){
-		CenterInfo.uigame.EnemyBlood(enemyActor.actorVO.perBlood);
-		CenterInfo.uigame.HeroBlood(heroActor.actorVO.perBlood);
+		CenterInfo.uigame.EnemyBlood(enemyActor.actorVO.rateBlood);
+		CenterInfo.uigame.HeroBlood(heroActor.actorVO.rateBlood);
 	}
 
 	public void OnHeroHurt(int type){
