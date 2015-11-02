@@ -21,6 +21,7 @@ public class ActorManager : MonoBehaviour {
 
 	public void OnHeroHurt(int type){
 		heroActor.OnHurt(type);
+
 	}
 
 
