@@ -1,0 +1,104 @@
+
+fusheng.png
+size: 850,164
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+flash
+  rotate: false
+  xy: 816, 27
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+fu
+  rotate: true
+  xy: 582, 4
+  size: 158, 173
+  orig: 158, 173
+  offset: 0, 0
+  index: -1
+fusheng
+  rotate: false
+  xy: 308, 33
+  size: 272, 129
+  orig: 272, 129
+  offset: 0, 0
+  index: -1
+jiao-02
+  rotate: false
+  xy: 2, 6
+  size: 304, 156
+  orig: 304, 156
+  offset: 0, 0
+  index: -1
+youjiao-01
+  rotate: false
+  xy: 757, 104
+  size: 63, 58
+  orig: 67, 58
+  offset: 4, 0
+  index: -1
+youjiao-02
+  rotate: true
+  xy: 384, 3
+  size: 28, 65
+  orig: 28, 65
+  offset: 0, 0
+  index: -1
+youshoubi-01
+  rotate: true
+  xy: 809, 61
+  size: 41, 32
+  orig: 41, 32
+  offset: 0, 0
+  index: -1
+youshouo-01
+  rotate: false
+  xy: 451, 3
+  size: 42, 28
+  orig: 42, 28
+  offset: 0, 0
+  index: -1
+youshouzhang-01
+  rotate: false
+  xy: 495, 8
+  size: 34, 23
+  orig: 34, 23
+  offset: 0, 0
+  index: -1
+zhoushouzhang-01
+  rotate: true
+  xy: 792, 2
+  size: 30, 22
+  orig: 30, 22
+  offset: 0, 0
+  index: -1
+zuojiao -01
+  rotate: true
+  xy: 757, 34
+  size: 68, 50
+  orig: 68, 50
+  offset: 0, 0
+  index: -1
+zuojiao -02
+  rotate: true
+  xy: 308, 9
+  size: 22, 74
+  orig: 22, 74
+  offset: 0, 0
+  index: -1
+zuoshou-01
+  rotate: true
+  xy: 757, 2
+  size: 30, 33
+  orig: 30, 33
+  offset: 0, 0
+  index: -1
+zuoshoubi-01
+  rotate: true
+  xy: 822, 110
+  size: 52, 23
+  orig: 52, 23
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,13 @@
+
+skeleton2.png
+size: 16,28
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BODY/skill-8-6
+  rotate: false
+  xy: 2, 2
+  size: 11, 24
+  orig: 25, 25
+  offset: 7, 1
+  index: -1
