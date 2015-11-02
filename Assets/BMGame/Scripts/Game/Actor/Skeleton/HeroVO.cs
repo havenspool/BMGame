@@ -6,4 +6,6 @@ public class HeroVO : ActorVO {
 	public HeroVO(){
 		ResetBlood(1000f);
 	}
+
+
 }
