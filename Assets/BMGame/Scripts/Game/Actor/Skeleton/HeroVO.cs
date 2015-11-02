@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HeroVO : ActorVO {
 
-	public HeroVO():base(){
-		allBlood = 100f;
+	public HeroVO(){
+		allBlood = 1000f;
 	}
 }

@@ -101,7 +101,6 @@ public class EnemyMActor : MActor {
 	public bool isHitAttackPoint(){
 		bool isHitPoint = false;
 		float left = 1;
-//		float addTime =  CenterInfo.audioManager.getBeatTime*1/3f;
 		if(isAttack()){
 			left = animatorStateInfo.normalizedTime-animatorStateInfo.length/2;
 		}else{

@@ -17,5 +17,9 @@ public class ActorEnemy : Actor{
 	void FixedUpdate () {
 		
 	}
+
+	public override void OnHurt(int AttackType){
+
+	}
 }
 
