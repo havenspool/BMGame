@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 /**
  * jski
@@ -15,8 +15,8 @@ public class ActorManager : MonoBehaviour {
 //	void FixedUpdate () {}
 
 	void Update(){
-		CenterInfo.uigame.EnemyBlood(enemyActor.actorVO.rateBlood);
-		CenterInfo.uigame.HeroBlood(heroActor.actorVO.rateBlood);
+		CenterInfo.uigame.EnemyBlood(enemyActor.actorVO.RateBlood);
+		CenterInfo.uigame.HeroBlood(heroActor.actorVO.RateBlood);
 	}
 
 	public void OnHeroHurt(int type){

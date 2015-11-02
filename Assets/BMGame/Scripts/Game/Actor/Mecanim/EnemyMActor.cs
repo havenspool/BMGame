@@ -60,10 +60,8 @@ public class EnemyMActor : MActor {
 					isThisBeat = true;
 					if(!isHurtClick){
 						setAtttakType1();
-//						isSetAttack();
 					}
 				}
-				
 			}else{
 				isThisBeat = false;
 			}

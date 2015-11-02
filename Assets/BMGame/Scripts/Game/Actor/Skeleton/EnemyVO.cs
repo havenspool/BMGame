@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyVO : ActorVO {
 
 	public EnemyVO(){
-		allBlood = 800f;
+		ResetBlood(800f);
 	}
 
 	public override string die{

@@ -5,14 +5,19 @@ public class ActorVO{
 
 	public string currentAnimation;
 
-	public float blood;
+	public float blood = 1000;
 	
-	public float allBlood;
+	public float allBlood = 1000;
 	
-	public float rateBlood{
+	public float RateBlood{
 		get{
 			return blood/allBlood;
 		}
+	}
+
+	protected void ResetBlood(float all){
+		blood = all;
+		allBlood = all;
 	}
 
 	public virtual string die{
