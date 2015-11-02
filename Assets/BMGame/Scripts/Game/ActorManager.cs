@@ -23,6 +23,7 @@ public class ActorManager : MonoBehaviour {
 		heroActor.OnHurt(type);
 	}
 
+
 	public void OnHeroAttack(){
 		int type = heroActor.OnAttack(enemyActor.isHitAttackPoint());
 		if(type>0){
