@@ -5,11 +5,11 @@ using System.Collections;
  */
 public class EnemyMActor : MActor {
 
-	private int hash_attack1 = Animator.StringToHash("enAttack_1");
-	private int hash_attack2 = Animator.StringToHash("enAttack_1-2");
-	private int hash_attack4 = Animator.StringToHash("enAttack_1-4");
-	private int hash_attack8 = Animator.StringToHash("enAttack_1-8");
-	private int hash_attack16 = Animator.StringToHash("enAttack_1-16");
+	private int hash_attack1 = Animator.StringToHash("attack_1");
+	private int hash_attack2 = Animator.StringToHash("attack_1-2");
+	private int hash_attack4 = Animator.StringToHash("attack_1-4");
+	private int hash_attack8 = Animator.StringToHash("attack_1-8");
+	private int hash_attack16 = Animator.StringToHash("attack_1-16");
 
 	private bool isHurtClick = false;
 	public void OnHurt(int AttackType){
@@ -134,11 +134,11 @@ public class EnemyMActor : MActor {
 
 	public bool isAAttack(AnimatorStateInfo asi){
 		bool bo = false;
-		if(asi.IsName("enAttack_1")
-		   ||asi.IsName("enAttack_1-2")
-		   ||asi.IsName("enAttack_1-4")
-		   ||asi.IsName("enAttack_1-8")
-		   ||asi.IsName("enAttack_1-16")){
+		if(asi.IsName("attack_1")
+		   ||asi.IsName("attack_1-2")
+		   ||asi.IsName("attack_1-4")
+		   ||asi.IsName("attack_1-8")
+		   ||asi.IsName("attack_1-16")){
 			bo = true;
 		}
 		return bo;
@@ -190,7 +190,7 @@ public class EnemyMActor : MActor {
 	private bool isHurt{
 		get{
 			bool bo = false;
-			if(animatorStateInfo.IsName("enHurt")){
+			if(animatorStateInfo.IsName("hurt")){
 				bo = true;
 			}
 			return bo;
@@ -200,7 +200,7 @@ public class EnemyMActor : MActor {
 	private bool isIdle{
 		get{
 			bool bo = false;
-			if(animatorStateInfo.IsName("enIdle")){
+			if(animatorStateInfo.IsName("idle")){
 				bo = true;
 			}
 			return bo;
@@ -210,8 +210,8 @@ public class EnemyMActor : MActor {
 	private bool isWait{
 		get{
 			bool bo = false;
-			if(animatorStateInfo.IsName("enIdle")
-			   ||animatorStateInfo.IsName("enIdleBeat")){
+			if(animatorStateInfo.IsName("idle")
+			   ||animatorStateInfo.IsName("idleBeat")){
 				bo = true;
 			}
 			return bo;

@@ -6,7 +6,7 @@ using System.Collections;
 public class ActorManager : MonoBehaviour {
 
 	public EnemyMActor enemyActor;
-	public HeroMActor heroActor;
+	public ActorHero heroActor;
 
 	void Awake(){
 		CenterInfo.actorManager = this;
@@ -16,8 +16,8 @@ public class ActorManager : MonoBehaviour {
 
 	void Update(){
 		
-		CenterInfo.uigame.EnemyBlood(enemyActor.actorVO.RateBlood);
-		CenterInfo.uigame.HeroBlood(heroActor.actorVO.RateBlood);
+		CenterInfo.uigame.EnemyBlood(enemyActor.actorVO.rateBlood);
+		CenterInfo.uigame.HeroBlood(heroActor.actorVO.rateBlood);
 		
 	}
 
@@ -59,7 +59,6 @@ public class ActorManager : MonoBehaviour {
 		go.transform.SetParent(transform);
 		go.transform.localPosition = new Vector3(0,0,-20);
 		go.transform.localScale = new Vector3(1,1,1);
-		heroActor = go.GetComponent<HeroMActor>();
-		heroActor.setSpeed(CenterInfo.audioManager.getScaleTime());
+		heroActor = go.GetComponent<ActorHero>();
 	}
 }

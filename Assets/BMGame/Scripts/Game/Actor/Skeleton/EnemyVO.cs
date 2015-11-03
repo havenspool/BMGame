@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class EnemyVO : ActorVO {
@@ -7,56 +7,36 @@ public class EnemyVO : ActorVO {
 		ResetBlood(800f);
 	}
 
-	public override string die{
-		get{
-			return "enDie";//30f  1s
+	public override string HurtTypeName(int type){
+		string name = "";
+		if(type ==1){
+			name = hurt_1;
+		}else if(type ==2){
+			name = hurt_12;
+		}else if(type==3){
+			name = hurt_14;
+		}else if(type==4){
+			name = hurt_14;
+		}else if(type==6){
+			name = hurt_14;
 		}
+		return name;
 	}
-	
-	public override string idle{
-		get{
-			return "enIdle";//14f  0.467s
+
+	public override string AttackTypeName(int type){
+		string name = "";
+		if(type ==1){
+			name = attack_1;
+		}else if(type ==2){
+			name = attack_12;
+		}else if(type==3){
+			name = attack_14;
+		}else if(type==4){
+			name = attack_18;
+		}else if(type==5){
+			name = attack_116;
 		}
+		return name;
 	}
-	
-	public override string idleBeat{
-		get{
-			return "enIdleBeat";//14f  0.467s
-		}
-	}
-	
-	public override string attack_1{
-		get{ 
-			return "enAttack_1";//14f  0.467s
-		}
-	}
-	public override string attack_2{
-		get{
-			return "";
-		}
-		
-	}
-	public override string attack_12{
-		get{
-			return "enAttack_1-2";
-		}
-		
-	}
-	public override string attack_14{
-		get{ 
-			return "enAttack_1-4";
-		}
-		
-	}
-	public override string attack_18 {
-		get{
-			return "enAttack_1-8";
-		}
-		
-	}
-	public override string attack_116{
-		get{
-			return  "enAttack_1-16";
-		}
-	}
+
 }
