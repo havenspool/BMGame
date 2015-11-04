@@ -5,14 +5,13 @@ using System.Collections;
  */
 public class AudioManager : MonoBehaviour {
 
-	private float normalBPM = 120;
-	private float bpm = 128;  //40-180
+	private float normalBPM = 120;//40-180
+	private float bpm = 128;  
 	private float bpmSe;// = 60f/128f;
 
 	private float offsetStartTime = 0.373f;
 
 	private AudioSource audioSoure;
-
 	private FMOD.Studio.EventInstance engine;
 
 //	FMOD_StudioEventEmitter emitter;
@@ -25,36 +24,27 @@ public class AudioManager : MonoBehaviour {
 	}
 	
 	void Start () {
-
 		audioSoure = GetComponent<AudioSource>();
 		audioSoure.Play();
-
-//		engine.getPitch
 //		emitter = GetComponent<FMOD_StudioEventEmitter>();
 //		engine = FMOD_StudioSystem.instance.GetEvent("event:/add");
 //		engine.start();
 //		engine.getParameter("Timeline", out enginRPM);
 //		engine.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 //		FMOD_StudioSystem.instance.PlayOneShot("event:/add",transform.position);
-
 	}
-
-//	void FixedUpdate()
-//	{
+//	void FixedUpdate(){
 //		if(engine != null){
 //			engine.getTimelinePosition(out position);
 //		}
-		// get a RPM value from the game's car engine
 //		engineRPM.setValue(rpm);
 //		enginRPM.setValue(1.0f);
 //	}
-
 //	void OnDisable()
 //	{
 //		engine.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 //		engine.release();
 //	}
-	
 //	public bool isActionBeat{
 //		get{
 //			bool bo = isBeatFrist();

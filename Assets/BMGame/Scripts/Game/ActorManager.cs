@@ -5,28 +5,22 @@ using System.Collections;
  */
 public class ActorManager : MonoBehaviour {
 
-	public EnemyMActor enemyActor;
+	public ActorEnemy enemyActor;
 	public ActorHero heroActor;
 
 	void Awake(){
 		CenterInfo.actorManager = this;
 	}
 
-//	void FixedUpdate () {}
-
 	void Update(){
-		
 		CenterInfo.uigame.EnemyBlood(enemyActor.actorVO.rateBlood);
 		CenterInfo.uigame.HeroBlood(heroActor.actorVO.rateBlood);
-		
 	}
 
 	public void OnHeroHurt(int type){
 		heroActor.OnHurt(type);
-
 	}
-
-
+	
 	public void OnHeroAttack(){
 		int type = heroActor.OnAttack(enemyActor.isHitAttackPoint());
 		if(type>0){
@@ -47,7 +41,7 @@ public class ActorManager : MonoBehaviour {
 		go.transform.SetParent(transform);
 		go.transform.localPosition = new Vector3(0,0,-20);
 		go.transform.localScale = new Vector3(1,1,1);
-		enemyActor = go.GetComponent<EnemyMActor>();
+		enemyActor = go.GetComponent<ActorEnemy>();
 		enemyActor.setSpeed(CenterInfo.audioManager.getScaleTime());
 	}
 

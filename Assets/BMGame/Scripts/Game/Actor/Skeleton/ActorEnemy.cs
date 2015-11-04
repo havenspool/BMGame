@@ -9,8 +9,8 @@ public class ActorEnemy : Actor{
 	private int hurtType = 0;
 	private bool isHurt = false;
 	private bool isAttackBeat=false;
-
-
+	private int attackNum = 0;
+	
 	protected override void init(){
 		base.init();
 		actorVO = new EnemyVO();
@@ -50,7 +50,6 @@ public class ActorEnemy : Actor{
 		ii ++;
 	}
 
-	private int attackNum = 0;
 	private bool isSetAttack(){
 		bool bo = false;
 		float value = Random.value;
@@ -78,7 +77,6 @@ public class ActorEnemy : Actor{
 		}else{
 			setAnimation(actorVO.idleBeat,true);
 		}
-
 	}
 
 	public override void OnHurt(int AttackType){
@@ -90,7 +88,6 @@ public class ActorEnemy : Actor{
 				isHurt = false;
 				laterTimer = laterTimer*1/3f;
 				setAnimation(actorVO.HurtTypeName(hurtType),false);
-//				TriggerHurt();
 			}else{
 				if(CenterInfo.audioManager.isBeat || isHitPoint){
 					laterTimer = laterTimer*1/3f;

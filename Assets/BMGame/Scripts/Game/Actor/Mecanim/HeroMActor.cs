@@ -17,7 +17,6 @@ public class HeroMActor : MActor {
 			}else if(AttackType==4){
 				laterTimer = laterTimer*1/1024f;
 			}
-
 			StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => {
 				hurtTBlood(AttackType);
 			},laterTimer));
@@ -26,7 +25,7 @@ public class HeroMActor : MActor {
 
 	private void hurtTBlood(int AttackType){
 		isHurtClick = false;
-		if(CenterInfo.actorManager.enemyActor.isAttack()){
+//		if(CenterInfo.actorManager.enemyActor.isAttack()){
 			float hurtBlood = 0f;
 			if(actorVO.blood>0){
 				if(AttackType==1){
@@ -47,7 +46,7 @@ public class HeroMActor : MActor {
 			if(hurtBlood>0){
 				CenterInfo.uigame.ShowFlyText(hurtBlood.ToString(),new Vector3(-110,216,20));
 			}
-		}
+//		}
 	}
 
 	private bool isBeatAtack;

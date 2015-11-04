@@ -54,7 +54,7 @@ public class ActorHero : Actor{
 
 	private void hurtTBlood(int AttackType){
 		isHurtClick = false;
-		if(CenterInfo.actorManager.enemyActor.isAttack()){
+		if(CenterInfo.actorManager.enemyActor.actorVO.isAttack){
 			float hurtBlood = 0f;
 			if(actorVO.blood>0){
 				if(AttackType==1){
@@ -79,7 +79,6 @@ public class ActorHero : Actor{
 	}
 
 	public int OnAttack(bool isHitPoint){
-		Debug.Log(isBeatAtack);
 		if(!actorVO.isDead){
 			if(isBeatAtack || isHitPoint){
 				if(!actorVO.isNormalAttack){
@@ -94,7 +93,6 @@ public class ActorHero : Actor{
 		}else{
 			attackType = -1;
 		}
-
 		return attackType;
 	}
 
