@@ -45,7 +45,6 @@ public class ActorHero : Actor{
 			}else if(AttackType==4){
 				laterTimer = laterTimer*1/1024f;
 			}
-			
 			StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => {
 				hurtTBlood(AttackType);
 			},laterTimer));
