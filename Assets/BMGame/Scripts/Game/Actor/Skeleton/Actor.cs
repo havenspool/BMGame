@@ -27,8 +27,8 @@ public class Actor : MonoBehaviour,IActor{
 		skeletonAnimation.state.Complete +=OnStateComplete;
 	}
 	
-	protected void setAnimation(string name,bool loop){
-		if(actorVO.currentAnimation != name){
+	protected void setAnimation(string name,bool loop,bool isForce){
+		if(actorVO.currentAnimation != name || isForce){
 			skeletonAnimation.Reset();
 			addEvent();
 			actorVO.currentAnimation = name;
@@ -36,6 +36,13 @@ public class Actor : MonoBehaviour,IActor{
 //			skeletonAnimation.AnimationName = name;
 			skeletonAnimation.state.SetAnimation(1,name,loop);
 		}
+	}
+	public void AnimationStop(){
+		skeletonAnimation.valid = false;
+	}
+
+	public void AnimationPlay(){
+		skeletonAnimation.valid = true;
 	}
 
 	public void setSpeed(float speed){
@@ -47,15 +54,17 @@ public class Actor : MonoBehaviour,IActor{
 	}
 	
 	protected virtual void OnStateEvent(Spine.AnimationState state,int trackIndex,Spine.Event e){}
-	protected virtual void OnStateComplete(Spine.AnimationState state,int trackIndex,int loop){}
-	protected virtual void OnStateStart(Spine.AnimationState state,int trackIndex){}
-	protected virtual void OnStateEnd(Spine.AnimationState state,int trackIndex){
+	protected virtual void OnStateComplete(Spine.AnimationState state,int trackIndex,int loop){
 		if(actorVO.currentAnimation == actorVO.attack_1){
-			setAnimation(actorVO.attack_2,false);
+			setAnimation(actorVO.attack_2,false,false);
 			actorVO.currentAnimation = actorVO.attack_11;
 		}else{
-			setAnimation(actorVO.idle,true);
+			setAnimation(actorVO.idle,true,false);
 		}
+	}
+	protected virtual void OnStateStart(Spine.AnimationState state,int trackIndex){}
+	protected virtual void OnStateEnd(Spine.AnimationState state,int trackIndex){
+
 	}
 }
 

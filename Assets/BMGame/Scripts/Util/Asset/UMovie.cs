@@ -56,7 +56,7 @@ public class UMovie : MonoBehaviour
 		if(stopFrame>=FrameCount){
 			stopFrame = FrameCount;
 		}else if(stopFrame<=0){
-			stopFrame = 1;
+			stopFrame = 0;
 		}
 		isGoStop = true;
 		isStop = false;

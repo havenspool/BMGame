@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/**
+ * jski
+ */
 public class MTime{
 	
 	public static float OffSetStartTime = 0.373f;
@@ -21,6 +23,12 @@ public class MTime{
 		}
 	}
 
+	public float fourBTime{
+		get{
+			return beatTime*4;
+		}
+	}
+
 	public float beatTime{// = 60f/128f;
 		get{
 			return 60/bpm;
@@ -35,13 +43,15 @@ public class MTime{
 
 	public float fixMusicTime{
 		get{
-			return Util.CF(thisTime - startTime,1);
+			float fix = thisTime - startTime-OffSetStartTime;
+			if(fix<0)fix = 0;
+			return Util.CF(fix,3);
 		}
 	}
 
 	private float GetThisTime(){
 		tTime = Time.fixedTime/Time.timeScale;
-		tTime = Util.CF (tTime,1);
+		tTime = Util.CF (tTime,3);
 		return tTime;
 	}
 

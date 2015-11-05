@@ -5,7 +5,6 @@ using System.Collections;
  */
 public class ActorHero : Actor{
 
-	private bool isBeatAtack;
 	private int attackType= 0;
 	private bool isHurtClick = false;
 
@@ -16,20 +15,15 @@ public class ActorHero : Actor{
 
 	void Start (){
 		addEvent();
-		setSpeed(CenterInfo.audioManager.getScaleTime());
+		setSpeed(CenterInfo.audioManager.GetScaleTime());
 	}
 	
 	void FixedUpdate () {
 		if(!CenterInfo.game.gameData.isGameOver){
-			if(CenterInfo.audioManager.isBeatEnd()){
+			if(CenterInfo.audioManager.IsBeatCenter()){
 				if(!actorVO.isAttack && !actorVO.isHurt){
-					setAnimation(actorVO.idleBeat,true);
+					setAnimation(actorVO.idleBeat,true,false);
 				}
-			}
-			if(CenterInfo.audioManager.isBeat){
-				isBeatAtack = true;
-			}else{
-				isBeatAtack = false;
 			}
 		}
 	}
@@ -68,7 +62,7 @@ public class ActorHero : Actor{
 				}
 			}else{
 				actorVO.blood =0;
-				setAnimation(actorVO.die,false);
+				setAnimation(actorVO.die,false,false);
 				CenterInfo.game.ShowGameEnd();
 			}
 			if(hurtBlood>0){
@@ -79,14 +73,17 @@ public class ActorHero : Actor{
 
 	public int OnAttack(bool isHitPoint){
 		if(!actorVO.isDead){
-			if(isBeatAtack || isHitPoint){
+			if(CenterInfo.audioManager.isBeat || isHitPoint){
 				if(!actorVO.isNormalAttack){
-					setAnimation(actorVO.attack_2,false);
+					CenterInfo.game.gameData.isBeatTouch = true;
+					setAnimation(actorVO.attack_2,false,true);
 					attackType = 2;
 				}else{
+					CenterInfo.game.gameData.isBeatTouch = false;
 					attackType = 0;
 				}
 			}else{
+				CenterInfo.game.gameData.isBeatTouch = false;
 				attackType = NormalAttack();
 			}
 		}else{
@@ -98,12 +95,17 @@ public class ActorHero : Actor{
 
 	private int NormalAttack(){
 		if(!actorVO.isNormalAttack){
-			setAnimation(actorVO.attack_1,false);
+			setAnimation(actorVO.attack_1,false,false);
 			attackType = 1;
 		}else{
 			attackType = 0;
 		}
 		return attackType;
+	}
+
+	protected override void OnStateComplete(Spine.AnimationState state,int trackIndex,int loop){
+		base.OnStateComplete (state,trackIndex,loop);
+		CenterInfo.game.gameData.isBeatTouch = false;
 	}
 }
 

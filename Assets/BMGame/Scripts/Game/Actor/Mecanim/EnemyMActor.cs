@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 /**
  * jski
@@ -52,7 +52,7 @@ public class EnemyMActor : MActor {
 	private bool isThisBeat=false;
 	void FixedUpdate () {
 		if(!CenterInfo.game.gameData.isGameOver){
-			if(CenterInfo.audioManager.isBeatEnd()){
+			if(CenterInfo.audioManager.IsBeatEnd()){
 				TriggerBeat();
 			}
 			if(CenterInfo.audioManager.isBeat){

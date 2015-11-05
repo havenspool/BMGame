@@ -95,7 +95,7 @@ public class HeroMActor : MActor {
 	}
 
 	void FixedUpdate () {
-		if(CenterInfo.audioManager.isBeatEnd()){
+		if(CenterInfo.audioManager.IsBeatEnd()){
 			if(animatorStateInfo.IsName("idle")){
 				animator.SetTrigger("isBeat");
 			}

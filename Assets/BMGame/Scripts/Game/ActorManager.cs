@@ -42,7 +42,7 @@ public class ActorManager : MonoBehaviour {
 		go.transform.localPosition = new Vector3(0,0,-20);
 		go.transform.localScale = new Vector3(1,1,1);
 		enemyActor = go.GetComponent<ActorEnemy>();
-		enemyActor.setSpeed(CenterInfo.audioManager.getScaleTime());
+		enemyActor.setSpeed(CenterInfo.audioManager.GetScaleTime());
 	}
 
 	public void ResetShowHero(){

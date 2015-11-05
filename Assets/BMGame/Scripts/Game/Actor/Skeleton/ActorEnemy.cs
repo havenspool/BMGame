@@ -8,7 +8,7 @@ public class ActorEnemy : Actor{
 	private int ii = 0;
 	private int hurtType = 0;
 	private bool isHurt = false;
-	private bool isAttackBeat=false;
+//	private bool isAttackBeat=false;
 	private int attackNum = 0;
 	
 	protected override void init(){
@@ -18,26 +18,26 @@ public class ActorEnemy : Actor{
 
 	void Start (){
 		addEvent();
-		setSpeed(CenterInfo.audioManager.getScaleTime());
+		setSpeed(CenterInfo.audioManager.GetScaleTime());
 	}
 	
 	void FixedUpdate () {
 		if(!CenterInfo.game.gameData.isGameOver){
-			if(CenterInfo.audioManager.isBeatEnd()){
+			if(CenterInfo.audioManager.IsBeatCenter()){
 				if(!actorVO.isAttack && !actorVO.isHurt){
-					setAnimation(actorVO.idleBeat,true);
+					setAnimation(actorVO.idleBeat,true,false);
 				}
 			}
-			if(CenterInfo.audioManager.isBeat){
-				if(!isAttackBeat){
-					isAttackBeat = true;
-					if(!isHurt){
-						setAtttakType1();
-					}
-				}
-			}else{
-				isAttackBeat = false;
-			}
+//			if(CenterInfo.audioManager.isBeat){
+//				if(!isAttackBeat){
+//					isAttackBeat = true;
+//					if(!isHurt){
+//						setAtttakType1();
+//					}
+//				}
+//			}else{
+//				isAttackBeat = false;
+//			}
 		}
 	}
 
@@ -73,9 +73,9 @@ public class ActorEnemy : Actor{
 		}
 		hurtType = type;
 		if(actorVO.HurtTypeName(type) != ""){
-			setAnimation(actorVO.HurtTypeName(hurtType),false);
+			setAnimation(actorVO.HurtTypeName(hurtType),false,false);
 		}else{
-			setAnimation(actorVO.idleBeat,true);
+			setAnimation(actorVO.idleBeat,true,false);
 		}
 	}
 
@@ -87,7 +87,7 @@ public class ActorEnemy : Actor{
 			if(isHitPoint && AttackType==2){
 				isHurt = false;
 				laterTimer = laterTimer*1/3f;
-				setAnimation(actorVO.HurtTypeName(hurtType),false);
+				setAnimation(actorVO.HurtTypeName(hurtType),false,false);
 			}else{
 				if(CenterInfo.audioManager.isBeat || isHitPoint){
 					laterTimer = laterTimer*1/3f;
@@ -108,7 +108,7 @@ public class ActorEnemy : Actor{
 					}
 				}else{
 					actorVO.blood =0;
-					setAnimation(actorVO.die,false);
+					setAnimation(actorVO.die,false,false);
 					CenterInfo.game.ShowGameNext();
 				}
 				CenterInfo.uigame.ShowFlyText(hurtBlood.ToString(),new Vector3(110,216,20));
