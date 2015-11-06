@@ -18,6 +18,9 @@ public class Game : MonoBehaviour {
 
 	void Awake(){
 		CenterInfo.game = this;
+		if(null == _gameData){
+			_gameData = new GameData();
+		}
 	}
 
 	void Start(){

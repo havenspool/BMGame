@@ -1,10 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Xml;  
 
 /**
- * jski
+ ** jski
  */
 public class Util{
+
+	/// <summary>  
+	/// 加载xml文档  
+	/// </summary>  
+	/// <returns></returns>  
+	public static  XmlDocument ReadAndLoadXml(string url)  {  
+		XmlDocument doc = new XmlDocument();
+		doc.Load(url);  
+		return doc;  
+		
+	}  
 
 	public static float CF(float t,int i){
 		if (i == 0) {

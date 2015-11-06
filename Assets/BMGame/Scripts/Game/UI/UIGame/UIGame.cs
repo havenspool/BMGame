@@ -81,8 +81,6 @@ public class UIGame : MonoBehaviour {
 		attackButton.gameObject.SetActive(true);
 	}
 
-
-
 	public FlyText ShowFlyText(string txt,Vector3 pos){
 		GameObject go = AssetManager.CreateGameObject("HurtFly");
 		go.transform.SetParent((RectTransform)transform);

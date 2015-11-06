@@ -23,7 +23,7 @@ public class ActorEnemy : Actor{
 	
 	void FixedUpdate () {
 		if(!CenterInfo.game.gameData.isGameOver){
-			if(CenterInfo.audioManager.IsBeatCenter()){
+			if(CenterInfo.audioManager.mAdudio.IsBeatCenter()){
 				if(!actorVO.isAttack && !actorVO.isHurt){
 					setAnimation(actorVO.idleBeat,true,false);
 				}

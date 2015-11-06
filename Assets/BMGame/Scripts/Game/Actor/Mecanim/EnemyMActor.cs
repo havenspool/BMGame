@@ -52,7 +52,7 @@ public class EnemyMActor : MActor {
 	private bool isThisBeat=false;
 	void FixedUpdate () {
 		if(!CenterInfo.game.gameData.isGameOver){
-			if(CenterInfo.audioManager.IsBeatEnd()){
+			if(CenterInfo.audioManager.mAdudio.IsBeatEnd()){
 				TriggerBeat();
 			}
 			if(CenterInfo.audioManager.isBeat){

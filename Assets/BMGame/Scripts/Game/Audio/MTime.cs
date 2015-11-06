@@ -13,7 +13,7 @@ public class MTime{
 	private float tTime;
 	private float fTime;
 
-	public void resetTime(){
+	public void ResetTime(){
 		startTime = GetThisTime();
 	}
 

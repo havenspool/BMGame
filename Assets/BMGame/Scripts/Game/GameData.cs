@@ -4,7 +4,7 @@ using System.Collections;
  * jski
  */
 public class GameData{
-
+	
 	public bool isBeatTouch = false;
 
 	public enum GameState{start,stop,end}
