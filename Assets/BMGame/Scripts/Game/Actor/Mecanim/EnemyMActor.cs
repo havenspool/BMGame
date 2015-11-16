@@ -42,7 +42,7 @@ public class EnemyMActor : MActor {
 				}else{
 					actorVO.blood =0;
 					setDead();
-					CenterInfo.game.ShowGameNext();
+					CenterInfo.game.GameNext();
 				}
 				CenterInfo.uigame.ShowFlyText(hurtBlood.ToString(),new Vector3(110,216,20));
 			},laterTimer));

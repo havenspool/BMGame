@@ -6,15 +6,18 @@ using System.Collections;
  */
 public class Actor : MonoBehaviour,IActor{
 
+	[HideInInspector]
+	public bool isAutoForAttack2 =false;
+
 	void Awake(){
 		init();
 	}
 	
 	public ActorVO actorVO;
-
-	public virtual void OnHurt(int AttackType){}
 	
 	protected SkeletonAnimation skeletonAnimation;
+	
+	public virtual void OnHurt(int AttackType){}
 	
 	protected virtual void init(){
 		skeletonAnimation = gameObject.GetComponentInChildren<SkeletonAnimation>();
@@ -32,11 +35,19 @@ public class Actor : MonoBehaviour,IActor{
 			skeletonAnimation.Reset();
 			addEvent();
 			actorVO.currentAnimation = name;
-//			skeletonAnimation.loop = loop;
-//			skeletonAnimation.AnimationName = name;
 			skeletonAnimation.state.SetAnimation(1,name,loop);
 		}
 	}
+	protected void setNoLAnimation(string name,bool loop,bool isForce){
+		if(actorVO.currentAnimation != name || isForce){
+			skeletonAnimation.Reset();
+			skeletonAnimation.state.ClearTracks();
+			addEvent();
+			actorVO.currentAnimation = name;
+			skeletonAnimation.state.SetAnimation(1,name,loop);
+		}
+	}
+
 	public void AnimationStop(){
 		skeletonAnimation.valid = false;
 	}
@@ -55,7 +66,7 @@ public class Actor : MonoBehaviour,IActor{
 	
 	protected virtual void OnStateEvent(Spine.AnimationState state,int trackIndex,Spine.Event e){}
 	protected virtual void OnStateComplete(Spine.AnimationState state,int trackIndex,int loop){
-		if(actorVO.currentAnimation == actorVO.attack_1){
+		if(actorVO.currentAnimation == actorVO.attack_1 && isAutoForAttack2){
 			setAnimation(actorVO.attack_2,false,false);
 			actorVO.currentAnimation = actorVO.attack_11;
 		}else{

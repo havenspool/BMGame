@@ -13,16 +13,32 @@ public class ActorManager : MonoBehaviour {
 	}
 
 	void Update(){
-		CenterInfo.uigame.EnemyBlood(enemyActor.actorVO.rateBlood);
-		CenterInfo.uigame.HeroBlood(heroActor.actorVO.rateBlood);
+
 	}
+
+	public void OnFrame(){
+		if (!CenterInfo.game.gameData.isGameStop) {
+			CenterInfo.uigame.EnemyBlood(enemyActor.actorVO.rateBlood);
+			CenterInfo.uigame.HeroBlood(heroActor.actorVO.rateBlood);
+		}
+	}
+
+	public void OnUpdate(){
+		if (null != enemyActor) {
+			enemyActor.OnUpdate();
+		}
+		if (null != heroActor) {
+			heroActor.OnUpdate();
+		}
+	}
+
 
 	public void OnHeroHurt(int type){
 		heroActor.OnHurt(type);
 	}
 	
 	public void OnHeroAttack(){
-		int type = heroActor.OnAttack(enemyActor.isHitAttackPoint());
+		int type = heroActor.OnAttack();
 		if(type>0){
 			enemyActor.OnHurt(type);
 		}

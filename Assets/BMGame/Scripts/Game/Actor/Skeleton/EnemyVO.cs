@@ -8,7 +8,7 @@ public class EnemyVO : ActorVO {
 	}
 
 	public override string HurtTypeName(int type){
-		string name = "";
+		string name = "idle";
 		if(type ==1){
 			name = hurt_1;
 		}else if(type ==2){
@@ -24,7 +24,7 @@ public class EnemyVO : ActorVO {
 	}
 
 	public override string AttackTypeName(int type){
-		string name = "";
+		string name = "idle";
 		if(type ==1){
 			name = attack_1;
 		}else if(type ==2){

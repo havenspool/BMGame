@@ -9,6 +9,7 @@ public class ActorHero : Actor{
 	private bool isHurtClick = false;
 
 	protected override void init(){
+		isAutoForAttack2 = true;
 		base.init();
 		actorVO = new HeroVO();
 	}
@@ -18,13 +19,16 @@ public class ActorHero : Actor{
 		setSpeed(CenterInfo.audioManager.GetScaleTime());
 	}
 
-	void FixedUpdate () {
+	public void OnUpdate () {
 		if(!CenterInfo.game.gameData.isGameOver){
 			if(CenterInfo.audioManager.mAdudio.IsBeatCenter()){
 				if(!actorVO.isAttack && !actorVO.isHurt){
 					setAnimation(actorVO.idleBeat,true,false);
 				}
 			}
+		}
+		if (CenterInfo.game.gameData.isBeatTouch && !CenterInfo.audioManager.isEnemyAttack) {
+			CenterInfo.game.gameData.isBeatTouch = CenterInfo.audioManager.isBeat;
 		}
 	}
 	
@@ -63,7 +67,7 @@ public class ActorHero : Actor{
 			}else{
 				actorVO.blood =0;
 				setAnimation(actorVO.die,false,false);
-				CenterInfo.game.ShowGameEnd();
+				CenterInfo.game.GameEnd();
 			}
 			if(hurtBlood>0){
 				CenterInfo.uigame.ShowFlyText(hurtBlood.ToString(),new Vector3(-110,216,20));
@@ -71,7 +75,8 @@ public class ActorHero : Actor{
 		}
 	}
 
-	public int OnAttack(bool isHitPoint){
+	public int OnAttack(){
+		bool isHitPoint = CenterInfo.audioManager.isEnemyAttack;
 		if(!actorVO.isDead){
 			if(CenterInfo.audioManager.isBeat || isHitPoint){
 				if(!actorVO.isNormalAttack){
@@ -105,7 +110,6 @@ public class ActorHero : Actor{
 
 	protected override void OnStateComplete(Spine.AnimationState state,int trackIndex,int loop){
 		base.OnStateComplete (state,trackIndex,loop);
-		CenterInfo.game.gameData.isBeatTouch = false;
 	}
 }
 

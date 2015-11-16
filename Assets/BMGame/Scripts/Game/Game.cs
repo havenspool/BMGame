@@ -6,14 +6,12 @@ using UnityEngine.UI;
  */
 public class Game : MonoBehaviour {
 
+	private UIGame uiGame;
+	private ActorManager actorManager;
+
 	private GameData _gameData;
 	public GameData gameData{
-		get{
-			if(null == _gameData){
-				_gameData = new GameData();
-			}
-			return _gameData;
-		}
+		get{return _gameData;}
 	}
 
 	void Awake(){
@@ -22,24 +20,46 @@ public class Game : MonoBehaviour {
 			_gameData = new GameData();
 		}
 	}
-
+	
 	void Start(){
-		ShowGameStart();
+		uiGame = CenterInfo.uigame;
+		actorManager = CenterInfo.actorManager;
+		GameReStart ();
 	}
 
-	public void ShowGameStart(){
+	void Update(){
+		actorManager.OnFrame ();
+	}
+
+	void FixedUpdate () {
+		if (!CenterInfo.game.gameData.isGameStop) {
+			uiGame.OnUpdate ();
+			actorManager.OnUpdate ();
+		}
+	}
+
+	public void GameStart(){
+		gameData.state = GameData.GameState.start;
+	}
+
+	public void GameReStart(){
 		gameData.state = GameData.GameState.start;
 		CenterInfo.actorManager.ResetAllActor();
 	}
 
-	public void ShowGameEnd(){
+	public void GameEnd(){
 		gameData.state = GameData.GameState.end;
 		CenterInfo.uigame.ShowEnd();
 	}
 
-	public void ShowGameNext(){
+	public void GameNext(){
 		gameData.state =  GameData.GameState.stop;
 		CenterInfo.uigame.showNextButton();
+	}
+
+	public void GameStop(){
+		gameData.state = GameData.GameState.stop;
+
 	}
 
 

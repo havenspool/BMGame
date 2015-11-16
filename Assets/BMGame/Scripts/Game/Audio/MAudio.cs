@@ -33,6 +33,8 @@ public class MAudio{
 	}
 	
 	public float GetScaleTime(){
+
+
 		return mTime.beatScale;
 	}
 	
@@ -104,7 +106,7 @@ public class MAudio{
 	}
 
 	public bool IsRateTime(float rateTime){
-		if ((mTime.fixMusicTime > mTime.fourBTime * rateTime - 0.1) && (mTime.fixMusicTime < mTime.fourBTime * rateTime + 0.1)) {
+		if ((GetFBeenSeconds() > mTime.fourBTime * rateTime - 0.1) && (GetFBeenSeconds() < mTime.fourBTime * rateTime + 0.1)) {
 			return true;
 		}
 		return false;

@@ -5,7 +5,11 @@ using System.Collections;
  * jski
  */
 public class UIGame : MonoBehaviour {
-	
+
+	public UIAttackTip uiAttackTip;
+	public UITopTip uiTopTip;
+	public UITextTip uiTextTip;
+
 	public Text bompTxt;
 	public Image heroBlood;
 	public Image enemyBlood;
@@ -21,14 +25,40 @@ public class UIGame : MonoBehaviour {
 		ShowStart();
 	}
 	
-	void FixedUpdate () {
-		if(CenterInfo.audioManager.isBeat){
-			bompTxt.text = "YES";
-		}else{
-			bompTxt.text = "NO";
+	public void OnUpdate () {
+		if (!CenterInfo.game.gameData.isGameStop) {
+			if(CenterInfo.audioManager.isBeat){
+				bompTxt.text = "YES";
+			}else{
+				bompTxt.text = "NO";
+			}
 		}
+
+	}
+
+	//------------------------tip---------------------------
+	public void ShowAttackTip(){
+		uiAttackTip.ShowTip ();
+	}
+	public void StopAttackTip(){
+		uiAttackTip.StopTip ();
+	}
+
+	public void ShowTextTip(string tip){
+		uiTextTip.ShowTip (tip);
+	}
+	public void StopTextTip(){
+		uiTextTip.StopTip ();
 	}
 	
+	public void ShowTopTip(){
+		uiTopTip.ShowTip ();
+	}
+	public void StopTopTip(){
+		uiTopTip.StopTip ();
+	}
+	//------------------------------------------------------
+
 	public void HeroBlood(float f){
 		heroBlood.fillAmount = f;
 	}

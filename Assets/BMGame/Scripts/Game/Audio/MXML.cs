@@ -9,19 +9,17 @@ using System.Collections.Generic;
 public class MXML{
 
 	private string musicUrl =  Application.dataPath +"/Data/BeatTime.xml";
-	List<string> _allList = new List<string>();  
+	private List<MBeatVO> _allList = new List<MBeatVO>();  
 	private XmlDocument musicDoc;
 
 	public MXML(){
 		musicDoc = Util.ReadAndLoadXml(musicUrl); 
 		GetAllProvinceName ();
-		GetBeatList ();
 	}
 
 	public string[] GetBeatList(){
-		string words = _allList [0];
-		string[] split = words.Split(new Char[] { ',' });
-		return split;
+		MBeatVO beatVO  = _allList [0];
+		return beatVO.GetBeatList();
 	}
 
 	private void GetAllProvinceName()  
@@ -29,9 +27,11 @@ public class MXML{
 		//所有province节点  
 		XmlNode musicNode = musicDoc.SelectSingleNode("music");  
 		XmlNodeList beatNodeList = musicNode.SelectNodes ("beat");
-		foreach (XmlNode b in beatNodeList)  
-		{  
-			_allList.Add(b.InnerText);
+		foreach (XmlNode b in beatNodeList){  
+			MBeatVO beatVO = new MBeatVO();
+			beatVO.beatLater = float.Parse(b.Attributes["later"].Value);
+			beatVO.attackList = b.InnerText;
+			_allList.Add(beatVO);
 		}
 	}  
 }
