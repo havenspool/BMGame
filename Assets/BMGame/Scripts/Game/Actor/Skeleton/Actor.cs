@@ -14,9 +14,7 @@ public class Actor : MonoBehaviour,IActor{
 	}
 	
 	public ActorVO actorVO;
-	
 	protected SkeletonAnimation skeletonAnimation;
-	
 	public virtual void OnHurt(int AttackType){}
 	
 	protected virtual void init(){
@@ -66,10 +64,13 @@ public class Actor : MonoBehaviour,IActor{
 	
 	protected virtual void OnStateEvent(Spine.AnimationState state,int trackIndex,Spine.Event e){}
 	protected virtual void OnStateComplete(Spine.AnimationState state,int trackIndex,int loop){
-		if(actorVO.currentAnimation == actorVO.attack_1 && isAutoForAttack2){
-			setAnimation(actorVO.attack_2,false,false);
-			actorVO.currentAnimation = actorVO.attack_11;
-		}else{
+		if(actorVO.currentAnimation != actorVO.die&&actorVO.currentAnimation != actorVO.ready){
+//			if(actorVO.currentAnimation == actorVO. && isAutoForAttack2){
+//				setAnimation(actorVO.attackNormal,false,false);
+//				actorVO.currentAnimation = actorVO.attack_11;
+//			}else{
+//
+//			}
 			setAnimation(actorVO.idle,true,false);
 		}
 	}

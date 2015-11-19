@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using FMOD;
 public class MAudio{
 
 	private MTime mTime;
@@ -8,7 +8,17 @@ public class MAudio{
 
 	public MAudio(){
 		mTime = new MTime();
-		mxml = new MXML ();
+		mxml = CenterInfo.game.gameData.mxml;
+	}
+
+	public int beatListCount{
+		get{
+			return mxml.listCount;
+		}
+	}
+
+	public void SetBeatId(int id){
+		mxml.listI = id;
 	}
 
 	public string[] beatList{
@@ -33,8 +43,6 @@ public class MAudio{
 	}
 	
 	public float GetScaleTime(){
-
-
 		return mTime.beatScale;
 	}
 	
@@ -82,7 +90,7 @@ public class MAudio{
 		return false;
 	}
 	
-	//0-1
+	//true false
 	public bool IsFourBRate(float rate){
 		if (Mathf.Abs (GetFourBRate()-rate) < 0.1f) {
 			return true;
@@ -96,12 +104,13 @@ public class MAudio{
 		}
 		return true;
 	}
-	
+
+	//0-1
 	public float GetFourBRate(){
 		return Util.CF (GetFBeenSeconds () / mTime.fourBTime, 3);
 	}
 	
-	public int GetFBeatTime(){
+	private int GetFBeatTime(){
 		return (int)(mTime.fixMusicTime/mTime.fourBTime);
 	}
 
@@ -111,5 +120,7 @@ public class MAudio{
 		}
 		return false;
 	}
+
+
 
 }

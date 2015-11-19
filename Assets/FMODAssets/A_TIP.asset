@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e06c992c0c162f94a880e74e722cb286, type: 3}
-  m_Name: New Event
+  m_Name: A_TIP
   m_EditorClassIdentifier: 
-  path: event:/New Event
-  id: '{44d0639f-6e15-464f-a0af-020be943e216}'
+  path: event:/A_TIP
+  id: '{6bdaa280-7afd-4f53-8cdc-24da9030bc2b}'

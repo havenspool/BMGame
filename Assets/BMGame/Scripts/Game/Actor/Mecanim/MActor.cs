@@ -11,7 +11,7 @@ public class MActor : MonoBehaviour {
 	public ActorVO actorVO{
 		get{
 			if(null ==_actorVO){
-				_actorVO = new ActorVO();
+				_actorVO = new ActorVO("");
 			}
 			return _actorVO;
 		}

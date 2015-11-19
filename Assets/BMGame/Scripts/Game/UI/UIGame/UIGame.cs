@@ -6,6 +6,7 @@ using System.Collections;
  */
 public class UIGame : MonoBehaviour {
 
+	public UIMTip uiMTip;
 	public UIAttackTip uiAttackTip;
 	public UITopTip uiTopTip;
 	public UITextTip uiTextTip;
@@ -17,20 +18,23 @@ public class UIGame : MonoBehaviour {
 	public Button reButton;
 	public Button nextButton;
 	public Button attackButton;
-
 	public GameObject end;
 	
 	void Awake () {
 		CenterInfo.uigame = this;
 		ShowStart();
+
 	}
 	
 	public void OnUpdate () {
-		if (!CenterInfo.game.gameData.isGameStop) {
-			if(CenterInfo.audioManager.isBeat){
-				bompTxt.text = "YES";
-			}else{
-				bompTxt.text = "NO";
+		if (CenterInfo.game.isGamePlay) {
+//			if(CenterInfo.audioManager.isBeat){
+//				bompTxt.text = "YES";
+//			}else{
+//				bompTxt.text = "NO";
+//			}
+			if(Input.GetKeyDown(KeyCode.Space)){
+				OnAttackDown();
 			}
 		}
 
@@ -67,13 +71,13 @@ public class UIGame : MonoBehaviour {
 		enemyBlood.fillAmount = f;
 	}
 
-	public void OnAttackClick(){
+	public void OnAttackDown(){
 		CenterInfo.actorManager.OnHeroAttack();
 	}
 
 	public void OnNextClick(){
 		showAttackButton();
-		CenterInfo.actorManager.ResetShowEnemy();
+		CenterInfo.game.GameNextWave ();
 	}
 
 	public void OnReClick(){
@@ -84,13 +88,13 @@ public class UIGame : MonoBehaviour {
 	public void ShowStart(){
 		showAttackButton();
 		end.SetActive(false);
-		bompTxt.gameObject.SetActive(true);
+//		bompTxt.gameObject.SetActive(true);
 	}
 
 	public void ShowEnd(){
 		showReButton();
 		end.SetActive(true);
-		bompTxt.gameObject.SetActive(false);
+//		bompTxt.gameObject.SetActive(false);
 	}
 
 	public void showReButton(){
@@ -119,6 +123,10 @@ public class UIGame : MonoBehaviour {
 		FlyText ft = go.GetComponent<FlyText>();
 		ft.ShowText(txt);
 		return ft;
+	}
+
+	public void Clear(){
+		uiMTip.Clear ();
 	}
 }
 

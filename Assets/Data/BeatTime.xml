@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>  
 <music>
-	<beat later = "1">1,1,1,2,2</beat>
-    <beat later = "2">1,1,1,1</beat>  
+	<actor name = "SlimeS">
+		<beat later = "1">1,2,2,1,2,2</beat>
+    	<beat later = "2">2,2,1,1,1</beat>  
+    </actor>
+    <actor name = "SlimeM">
+		<beat later = "1">1,2,2,1,2,2</beat>
+    	<beat later = "2">1,2,2,4,4,4,4,2,2</beat>  
+    </actor>
+    <actor name = "SlimeL">
+		<beat later = "1">2,2,1,4,4,2,1</beat>
+    	<beat later = "2">4,4,2,4,4,2,1,2,2</beat>  
+    </actor>
 </music>  

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<actor>
+	<data attack="10" defense="5" blood="150">Hero</data>
+    <data attack="6" defense="2" blood="400">SlimeS</data>  
+    <data attack="7" defense="5" blood="800">SlimeM</data>  
+    <data attack="9" defense="8" blood="1000">SlimeL</data>  
+</actor>  

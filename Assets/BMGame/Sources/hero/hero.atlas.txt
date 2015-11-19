@@ -1,181 +1,223 @@
 
 hero.png
-size: 721,221
+size: 311,1038
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-body1
+bBody
   rotate: false
-  xy: 629, 97
-  size: 42, 47
-  orig: 42, 47
+  xy: 215, 182
+  size: 86, 96
+  orig: 86, 96
   offset: 0, 0
   index: -1
-body2
+bHead
+  rotate: false
+  xy: 2, 649
+  size: 186, 195
+  orig: 186, 195
+  offset: 0, 0
+  index: -1
+bScabbard
+  rotate: false
+  xy: 170, 138
+  size: 43, 140
+  orig: 44, 140
+  offset: 1, 0
+  index: -1
+dDArmL
+  rotate: false
+  xy: 251, 681
+  size: 58, 42
+  orig: 58, 42
+  offset: 0, 0
+  index: -1
+dDArmR
+  rotate: false
+  xy: 282, 453
+  size: 27, 56
+  orig: 27, 56
+  offset: 0, 0
+  index: -1
+dHead
+  rotate: false
+  xy: 2, 76
+  size: 166, 176
+  orig: 167, 176
+  offset: 1, 0
+  index: -1
+dLegL
+  rotate: false
+  xy: 170, 92
+  size: 43, 44
+  orig: 43, 44
+  offset: 0, 0
+  index: -1
+dShankL
+  rotate: false
+  xy: 238, 780
+  size: 37, 70
+  orig: 37, 71
+  offset: 0, 0
+  index: -1
+fBody
+  rotate: false
+  xy: 168, 280
+  size: 87, 98
+  orig: 87, 98
+  offset: 0, 0
+  index: -1
+fDArmL
+  rotate: false
+  xy: 190, 649
+  size: 46, 40
+  orig: 47, 40
+  offset: 1, 0
+  index: -1
+fDArmR
   rotate: true
-  xy: 209, 5
-  size: 38, 43
-  orig: 38, 43
+  xy: 251, 453
+  size: 56, 29
+  orig: 57, 31
+  offset: 1, 1
+  index: -1
+fHead
+  rotate: false
+  xy: 2, 254
+  size: 164, 194
+  orig: 164, 195
   offset: 0, 0
   index: -1
-body3
+fUArmL
   rotate: true
-  xy: 585, 16
-  size: 45, 42
-  orig: 45, 42
+  xy: 190, 691
+  size: 65, 44
+  orig: 65, 44
   offset: 0, 0
   index: -1
-body4
-  rotate: false
-  xy: 486, 9
-  size: 43, 52
-  orig: 43, 52
-  offset: 0, 0
-  index: -1
-body5
-  rotate: false
-  xy: 440, 3
-  size: 44, 58
-  orig: 44, 58
-  offset: 0, 0
-  index: -1
-body6
+nBody
   rotate: true
-  xy: 675, 50
-  size: 49, 39
-  orig: 49, 39
-  offset: 0, 0
+  xy: 215, 108
+  size: 72, 89
+  orig: 73, 89
+  offset: 1, 0
   index: -1
-head1
-  rotate: false
-  xy: 183, 78
-  size: 193, 141
-  orig: 193, 141
-  offset: 0, 0
-  index: -1
-head2
-  rotate: false
-  xy: 378, 63
-  size: 160, 156
-  orig: 160, 156
-  offset: 0, 0
-  index: -1
-head26
-  rotate: false
-  xy: 2, 63
-  size: 179, 156
-  orig: 179, 156
-  offset: 0, 0
-  index: -1
-lhand1
-  rotate: false
-  xy: 540, 103
-  size: 87, 41
-  orig: 87, 41
-  offset: 0, 0
-  index: -1
-lhand2
+nDArmL
   rotate: true
-  xy: 669, 151
-  size: 68, 50
-  orig: 68, 50
+  xy: 257, 359
+  size: 46, 36
+  orig: 46, 36
   offset: 0, 0
   index: -1
-lhand3
+nDArmR
   rotate: true
-  xy: 673, 101
-  size: 48, 44
-  orig: 48, 44
+  xy: 277, 780
+  size: 35, 30
+  orig: 35, 30
   offset: 0, 0
   index: -1
-lhand5
+nHead
   rotate: false
-  xy: 254, 38
-  size: 63, 38
-  orig: 63, 38
-  offset: 0, 0
+  xy: 2, 846
+  size: 192, 190
+  orig: 193, 190
+  offset: 1, 0
   index: -1
-lleg1
+nLegL
   rotate: false
-  xy: 183, 45
-  size: 69, 31
-  orig: 69, 31
-  offset: 0, 0
+  xy: 251, 629
+  size: 55, 50
+  orig: 56, 50
+  offset: 1, 0
   index: -1
-lleg2
-  rotate: false
-  xy: 531, 18
-  size: 52, 43
-  orig: 52, 43
-  offset: 0, 0
-  index: -1
-lleg5
-  rotate: false
-  xy: 160, 2
-  size: 47, 41
-  orig: 47, 41
-  offset: 0, 0
-  index: -1
-rhand1
-  rotate: false
-  xy: 2, 4
-  size: 80, 57
-  orig: 80, 57
-  offset: 0, 0
-  index: -1
-rhand2
+nLegR
   rotate: true
-  xy: 375, 3
-  size: 58, 63
-  orig: 58, 63
+  xy: 251, 511
+  size: 57, 37
+  orig: 57, 37
   offset: 0, 0
   index: -1
-rhand3
-  rotate: false
-  xy: 540, 146
-  size: 127, 73
-  orig: 127, 73
-  offset: 0, 0
-  index: -1
-rhand4
-  rotate: false
-  xy: 84, 11
-  size: 74, 50
-  orig: 74, 50
-  offset: 0, 0
-  index: -1
-rhand5
-  rotate: false
-  xy: 540, 63
-  size: 68, 38
-  orig: 68, 38
-  offset: 0, 0
-  index: -1
-rleg1
-  rotate: false
-  xy: 254, 4
-  size: 55, 32
-  orig: 55, 32
-  offset: 0, 0
-  index: -1
-rleg2
-  rotate: false
-  xy: 319, 37
-  size: 54, 39
-  orig: 54, 39
-  offset: 0, 0
-  index: -1
-rleg5
-  rotate: false
-  xy: 629, 47
-  size: 44, 48
-  orig: 44, 48
-  offset: 0, 0
-  index: -1
-rleg6
+nScabbard
   rotate: true
-  xy: 629, 10
-  size: 35, 51
-  orig: 35, 51
+  xy: 196, 959
+  size: 77, 113
+  orig: 77, 114
+  offset: 0, 1
+  index: -1
+nShankL
+  rotate: false
+  xy: 277, 817
+  size: 32, 33
+  orig: 32, 34
+  offset: 0, 1
+  index: -1
+nShankR
+  rotate: false
+  xy: 257, 319
+  size: 28, 38
+  orig: 28, 38
   offset: 0, 0
+  index: -1
+nUArmL
+  rotate: false
+  xy: 257, 725
+  size: 52, 53
+  orig: 52, 53
+  offset: 0, 0
+  index: -1
+nUArmR
+  rotate: false
+  xy: 251, 407
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+nates
+  rotate: true
+  xy: 190, 758
+  size: 86, 46
+  orig: 86, 46
+  offset: 0, 0
+  index: -1
+pocket
+  rotate: true
+  xy: 251, 570
+  size: 57, 42
+  orig: 58, 42
+  offset: 0, 0
+  index: -1
+sBody
+  rotate: false
+  xy: 221, 21
+  size: 67, 85
+  orig: 67, 85
+  offset: 0, 0
+  index: -1
+sHead
+  rotate: false
+  xy: 2, 450
+  size: 175, 197
+  orig: 175, 197
+  offset: 0, 0
+  index: -1
+sScabbard
+  rotate: false
+  xy: 196, 852
+  size: 86, 105
+  orig: 86, 105
+  offset: 0, 0
+  index: -1
+sword
+  rotate: false
+  xy: 2, 2
+  size: 217, 72
+  orig: 217, 72
+  offset: 0, 0
+  index: -1
+swordFX
+  rotate: true
+  xy: 179, 380
+  size: 267, 70
+  orig: 268, 71
+  offset: 0, 1
   index: -1

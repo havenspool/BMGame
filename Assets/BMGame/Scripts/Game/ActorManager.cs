@@ -12,15 +12,9 @@ public class ActorManager : MonoBehaviour {
 		CenterInfo.actorManager = this;
 	}
 
-	void Update(){
-
-	}
-
 	public void OnFrame(){
-		if (!CenterInfo.game.gameData.isGameStop) {
-			CenterInfo.uigame.EnemyBlood(enemyActor.actorVO.rateBlood);
-			CenterInfo.uigame.HeroBlood(heroActor.actorVO.rateBlood);
-		}
+		CenterInfo.uigame.EnemyBlood(enemyActor.actorVO.rateBlood);
+		CenterInfo.uigame.HeroBlood(heroActor.actorVO.rateBlood);
 	}
 
 	public void OnUpdate(){
@@ -31,8 +25,7 @@ public class ActorManager : MonoBehaviour {
 			heroActor.OnUpdate();
 		}
 	}
-
-
+	
 	public void OnHeroHurt(int type){
 		heroActor.OnHurt(type);
 	}
@@ -53,12 +46,13 @@ public class ActorManager : MonoBehaviour {
 		if(enemyActor){
 			Destroy(enemyActor.gameObject);
 		}
-		GameObject go = AssetManager.CreateGameObject("Enemy");
+		GameObject go = AssetManager.CreateGameObject("Enemy/"+CenterInfo.game.gameData.thisWaveName);
 		go.transform.SetParent(transform);
 		go.transform.localPosition = new Vector3(0,0,-20);
 		go.transform.localScale = new Vector3(1,1,1);
 		enemyActor = go.GetComponent<ActorEnemy>();
 		enemyActor.setSpeed(CenterInfo.audioManager.GetScaleTime());
+		CenterInfo.game.mxml.SetBeatList (enemyActor.actorName);
 	}
 
 	public void ResetShowHero(){

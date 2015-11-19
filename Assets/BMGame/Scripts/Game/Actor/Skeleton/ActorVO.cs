@@ -4,6 +4,11 @@ using System.Collections;
 public class ActorVO{
 	
 //	public static enum AttackType{nu,attack1,attack12,attack14,attack18,attack116}
+	public ActorVO(string name){
+
+	}
+
+	public MActorVO mActorVO;
 
 	public string currentAnimation;
 
@@ -30,13 +35,19 @@ public class ActorVO{
 		}
 	}
 
+	public float attack{
+		get{
+			return mActorVO.attack;
+		}
+	}
+
 	public bool IsAnimalBehaiver(string name){
 		return currentAnimation == name;
 	}
 
 	public bool isNormalAttack{
 		get{
-			if(currentAnimation == attack_11 || currentAnimation == attack_1){
+			if(currentAnimation == attackNormal){//currentAnimation == attackBeat || 
 				return true;
 			}
 			return false;
@@ -72,8 +83,8 @@ public class ActorVO{
 	public bool isAttack{
 		get{
 			if(currentAnimation == attack_1
-			   ||currentAnimation == attack_2
-			   ||currentAnimation == attack_11
+			   ||currentAnimation == attackNormal
+			   ||currentAnimation == attackBeat
 			   ||currentAnimation == attack_12
 			   ||currentAnimation == attack_14
 			   ||currentAnimation == attack_18
@@ -95,46 +106,48 @@ public class ActorVO{
 	}
 	public virtual string idleBeat{
 		get{
-			return "idleBeat";//14f  0.467s
+			return "idle";//14f  0.467s
+		}
+	}
+
+//	public virtual string attack_11{
+//		get{ 
+//			return "attack_11";//14f  0.467s
+//		}
+//	}
+	public virtual string attackNormal{
+		get{
+			return "attackNormal";//14f 0.467s
+		}
+	}
+	public virtual string attackBeat{
+		get{
+			return "attackBeat";//14f 0.467s
 		}
 	}
 	public virtual string attack_1{
 		get{ 
-			return "attack_1";//14f  0.467s
+			return "1b";//14f  0.467s
 		}
-	}
-	public virtual string attack_11{
-		get{ 
-			return "attack_11";//14f  0.467s
-		}
-	}
-	public virtual string attack_2{
-		get{
-			return "attack_2";//14f 0.467s
-		}
-		
 	}
 	public virtual string attack_12{
 		get{
-			return "attack_1-2";
+			return "1_2b";
 		}
-		
 	}
 	public virtual string attack_14{
 		get{ 
-			return "attack_1-4";
+			return "1_4b";
 		}
-		
 	}
 	public virtual string attack_18 {
 		get{
-			return "attack_1-8";
+			return "1_8b";
 		}
-		
 	}
 	public virtual string attack_116{
 		get{
-			return  "attack_1-16";
+			return  "1_16-1";
 		}
 	}
 	public virtual string hurt_1{

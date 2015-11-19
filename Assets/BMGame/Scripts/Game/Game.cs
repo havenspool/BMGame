@@ -11,14 +11,22 @@ public class Game : MonoBehaviour {
 
 	private GameData _gameData;
 	public GameData gameData{
-		get{return _gameData;}
+		get{
+			if(null == _gameData){
+				_gameData = new GameData();
+			}
+			return _gameData;
+		}
+	}
+
+	public MXML mxml{
+		get{
+			return gameData.mxml;
+		}
 	}
 
 	void Awake(){
 		CenterInfo.game = this;
-		if(null == _gameData){
-			_gameData = new GameData();
-		}
 	}
 	
 	void Start(){
@@ -28,11 +36,13 @@ public class Game : MonoBehaviour {
 	}
 
 	void Update(){
-		actorManager.OnFrame ();
+		if (isGamePlay) {
+			actorManager.OnFrame ();
+		}
 	}
 
 	void FixedUpdate () {
-		if (!CenterInfo.game.gameData.isGameStop) {
+		if (isGamePlay) {
 			uiGame.OnUpdate ();
 			actorManager.OnUpdate ();
 		}
@@ -40,28 +50,55 @@ public class Game : MonoBehaviour {
 
 	public void GameStart(){
 		gameData.state = GameData.GameState.start;
+		CenterInfo.audioManager.AudioPlay ();
 	}
 
 	public void GameReStart(){
 		gameData.state = GameData.GameState.start;
-		CenterInfo.actorManager.ResetAllActor();
+		ResetAll ();
+	}
+
+	public void GameEnemyDead(){
+		if (gameData.NextWaveName () != "") {
+			gameData.state = GameData.GameState.stop;
+			CenterInfo.uigame.showNextButton ();
+			CenterInfo.audioManager.AudioStop ();
+			CenterInfo.uigame.Clear ();
+		} else {
+			GameEnd();
+		}
+	}
+
+	public void GameNextWave(){
+		gameData.state = GameData.GameState.start;
+		CenterInfo.actorManager.ResetShowEnemy();
+		CenterInfo.audioManager.AudioRePlay ();
+		CenterInfo.uigame.Clear ();
 	}
 
 	public void GameEnd(){
 		gameData.state = GameData.GameState.end;
 		CenterInfo.uigame.ShowEnd();
+		CenterInfo.audioManager.AudioStop ();
 	}
-
-	public void GameNext(){
-		gameData.state =  GameData.GameState.stop;
-		CenterInfo.uigame.showNextButton();
-	}
-
+	
 	public void GameStop(){
 		gameData.state = GameData.GameState.stop;
+		CenterInfo.audioManager.AudioStop ();
+	}
+
+	public void ResetAll(){
+		CenterInfo.audioManager.AudioRePlay ();
+		CenterInfo.actorManager.ResetAllActor();
+		CenterInfo.uigame.Clear ();
 
 	}
 
+	public bool isGamePlay{
+		get{
+			return !gameData.isGameStop && !gameData.isGameOver;
+		}
+	}
 
 
 }

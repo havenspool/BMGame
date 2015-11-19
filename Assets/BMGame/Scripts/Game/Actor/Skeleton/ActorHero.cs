@@ -5,13 +5,13 @@ using System.Collections;
  */
 public class ActorHero : Actor{
 
+	public string actorName;
 	private int attackType= 0;
-	private bool isHurtClick = false;
 
 	protected override void init(){
 		isAutoForAttack2 = true;
 		base.init();
-		actorVO = new HeroVO();
+		actorVO = new HeroVO(actorName);
 	}
 
 	void Start (){
@@ -23,47 +23,35 @@ public class ActorHero : Actor{
 		if(!CenterInfo.game.gameData.isGameOver){
 			if(CenterInfo.audioManager.mAdudio.IsBeatCenter()){
 				if(!actorVO.isAttack && !actorVO.isHurt){
-					setAnimation(actorVO.idleBeat,true,false);
+					setAnimation(actorVO.idle,true,false);
 				}
 			}
-		}
-		if (CenterInfo.game.gameData.isBeatTouch && !CenterInfo.audioManager.isEnemyAttack) {
-			CenterInfo.game.gameData.isBeatTouch = CenterInfo.audioManager.isBeat;
 		}
 	}
 	
 	public override void OnHurt(int AttackType){
-		if(!isHurtClick && AttackType>0){
-			isHurtClick = true;
-			float laterTimer = CenterInfo.audioManager.getBeatTime;
-			if(AttackType==1){
-				laterTimer = laterTimer*2/3f;
-			}else if(AttackType==2){
-				laterTimer = laterTimer*1/12f;
-			}else if(AttackType==4){
-				laterTimer = laterTimer*1/1024f;
-			}
-			StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => {
-				hurtTBlood(AttackType);
-			},laterTimer));
-		}
+//		if(!isHurtClick && AttackType>0){
+//			isHurtClick = true;
+//			float laterTimer = CenterInfo.audioManager.getBeatTime;
+//			if(AttackType==1){
+//				laterTimer = laterTimer*2/3f;
+//			}else if(AttackType==2){
+//				laterTimer = laterTimer*1/12f;
+//			}else if(AttackType==4){
+//				laterTimer = laterTimer*1/1024f;
+//			}
+//			StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => {
+//				hurtTBlood(AttackType);
+//			},laterTimer));
+//		}
+		hurtTBlood(AttackType);
 	}
 
 	private void hurtTBlood(int AttackType){
-		isHurtClick = false;
 		if(CenterInfo.actorManager.enemyActor.actorVO.isAttack){
-			float hurtBlood = 0f;
-			if(actorVO.blood>0){
-				if(AttackType==1){
-					hurtBlood = 40f;
-					actorVO.blood -=hurtBlood;
-				}else if(AttackType==2){
-					hurtBlood = 20f;
-					actorVO.blood -=hurtBlood;
-				}else if(AttackType==4){
-					hurtBlood = 10f;
-					actorVO.blood -=hurtBlood;
-				}
+			float hurtBlood = actorVO.mActorVO.HurtNoBeat(CenterInfo.actorManager.enemyActor.actorVO.attack);
+			if(actorVO.blood-hurtBlood>0){
+				actorVO.blood -=hurtBlood;
 			}else{
 				actorVO.blood =0;
 				setAnimation(actorVO.die,false,false);
@@ -76,12 +64,16 @@ public class ActorHero : Actor{
 	}
 
 	public int OnAttack(){
-		bool isHitPoint = CenterInfo.audioManager.isEnemyAttack;
+		bool isHitPoint = CenterInfo.audioManager.isMusicAttack;
 		if(!actorVO.isDead){
 			if(CenterInfo.audioManager.isBeat || isHitPoint){
 				if(!actorVO.isNormalAttack){
-					CenterInfo.game.gameData.isBeatTouch = true;
-					setAnimation(actorVO.attack_2,false,true);
+					if(isHitPoint){
+						CenterInfo.game.gameData.isBeatTouch = true;
+						setAnimation(CenterInfo.audioManager.GetMusicAttack(),false,true);
+					}else{
+						setAnimation(actorVO.attackBeat,false,true);
+					}
 					attackType = 2;
 				}else{
 					CenterInfo.game.gameData.isBeatTouch = false;
@@ -100,7 +92,7 @@ public class ActorHero : Actor{
 
 	private int NormalAttack(){
 		if(!actorVO.isNormalAttack){
-			setAnimation(actorVO.attack_1,false,false);
+			setAnimation(actorVO.attackNormal,false,false);
 			attackType = 1;
 		}else{
 			attackType = 0;
