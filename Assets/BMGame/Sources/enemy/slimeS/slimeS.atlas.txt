@@ -1,131 +1,152 @@
 
 slimeS.png
-size: 363,1030
+size: 475,1032
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 !
-  rotate: true
-  xy: 2, 306
+  rotate: false
+  xy: 212, 33
   size: 29, 137
   orig: 29, 137
   offset: 0, 0
   index: -1
 body
   rotate: false
-  xy: 2, 22
+  xy: 239, 609
   size: 232, 163
   orig: 232, 163
   offset: 0, 0
   index: -1
 body 1
   rotate: true
-  xy: 260, 486
+  xy: 244, 175
   size: 305, 88
   orig: 305, 89
   offset: 0, 1
   index: -1
 body 2
-  rotate: true
-  xy: 2, 793
+  rotate: false
+  xy: 2, 672
   size: 235, 358
   orig: 236, 358
   offset: 0, 0
   index: -1
 body 4-1
-  rotate: true
-  xy: 2, 337
+  rotate: false
+  xy: 239, 774
   size: 222, 256
   orig: 222, 256
   offset: 0, 0
   index: -1
 body 4-2
-  rotate: true
-  xy: 2, 561
+  rotate: false
+  xy: 2, 414
   size: 230, 256
   orig: 231, 256
   offset: 0, 0
   index: -1
 bt
   rotate: true
-  xy: 323, 187
+  xy: 243, 36
   size: 134, 36
   orig: 135, 36
   offset: 0, 0
   index: -1
 eye
   rotate: false
-  xy: 141, 270
+  xy: 335, 100
   size: 97, 65
   orig: 97, 65
   offset: 0, 0
   index: -1
 eye hurt
   rotate: true
-  xy: 2, 195
+  xy: 380, 507
   size: 100, 83
   orig: 101, 83
   offset: 0, 0
   index: -1
 fx1
   rotate: false
-  xy: 87, 192
+  xy: 281, 53
   size: 52, 112
   orig: 52, 112
   offset: 0, 0
   index: -1
 fx2
   rotate: false
-  xy: 260, 297
+  xy: 334, 293
   size: 61, 187
   orig: 61, 188
   offset: 0, 0
   index: -1
 fx3
-  rotate: true
-  xy: 141, 193
+  rotate: false
+  xy: 397, 336
   size: 42, 169
   orig: 43, 169
   offset: 1, 0
   index: -1
 fx4
   rotate: false
-  xy: 323, 323
+  xy: 172, 9
   size: 38, 161
   orig: 38, 161
   offset: 0, 0
   index: -1
 fx5
   rotate: true
-  xy: 240, 237
+  xy: 335, 40
   size: 58, 66
   orig: 58, 66
   offset: 0, 0
   index: -1
 highlight
-  rotate: true
-  xy: 236, 2
+  rotate: false
+  xy: 397, 315
   size: 37, 19
   orig: 38, 19
   offset: 0, 0
   index: -1
+hitFX1
+  rotate: false
+  xy: 334, 167
+  size: 124, 124
+  orig: 124, 124
+  offset: 0, 0
+  index: -1
+hitFX2
+  rotate: false
+  xy: 2, 2
+  size: 168, 168
+  orig: 168, 168
+  offset: 0, 0
+  index: -1
+hitFX3
+  rotate: false
+  xy: 2, 172
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
 particle1
-  rotate: true
-  xy: 257, 7
+  rotate: false
+  xy: 441, 488
   size: 32, 17
   orig: 33, 18
   offset: 0, 0
   index: -1
 particle2
   rotate: true
-  xy: 350, 777
+  xy: 463, 1016
   size: 14, 10
   orig: 15, 10
   offset: 0, 0
   index: -1
 warning
-  rotate: true
-  xy: 236, 41
+  rotate: false
+  xy: 234, 482
   size: 144, 125
   orig: 144, 125
   offset: 0, 0
