@@ -38,12 +38,12 @@ public class Game : MonoBehaviour {
 		actorManager.OnFrame ();
 		if (gameData.isGameStart) {
 			gameData.searchTime ++;
-			if (gameData.searchTime > 8 * CenterInfo.frame) {
+			if (gameData.searchTime > 0 * CenterInfo.frame) {
 				GameNextEnemyShow ();
 			}
 		} else if (gameData.isGameReady) {
 			gameData.readyTime ++;
-			if(gameData.readyTime>3* CenterInfo.frame) {
+			if(gameData.readyTime>0* CenterInfo.frame) {
 				GameFight();
 				CenterInfo.uigame.ShowBompTxt(false,"");
 			}else{

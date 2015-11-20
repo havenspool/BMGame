@@ -36,8 +36,12 @@ public class MXML{
 	}
 
 	public string[] GetBeatList(){
-		MBeatVO beatVO  = aBeatList [listI];
-		return beatVO.GetBeatList();
+		if (listI >= 0) {
+			MBeatVO beatVO = aBeatList [listI];
+			return beatVO.GetBeatList ();
+		} else {
+			return new string[]{"0"};
+		}
 	}
 
 	public MActorVO GetMActorVO(string name){

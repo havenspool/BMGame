@@ -7,7 +7,7 @@ using UnityEngine.UI;
  */
 public class UMovie : MonoBehaviour
 {
-	public enum LoopType{clamp,loop,pingpong}
+	public enum LoopType{clamp,loop,pingpong,stop}
 	public LoopType pType;
 	public string movieName;
 	public List<Sprite> lSprites;

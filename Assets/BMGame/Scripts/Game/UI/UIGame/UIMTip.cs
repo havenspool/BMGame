@@ -37,8 +37,18 @@ public class UIMTip : MonoBehaviour {
 				} else {
 					isBeatShow = false;
 				}
+				hasShowTip = true;
 				CenterInfo.game.gameData.isBeatTouch = false;
 			} else {
+				if(hasShowTip){
+					hasShowTip = false;
+					if(list.Count>0){
+						for(int i = 0;i<list.Count;i++){
+							UMovie t = (UMovie)list[i];
+							t.GotoAndStop(2);
+						}
+					}
+				}
 				if(CenterInfo.game.gameData.isBeatTouch){
 					if(!isYes){
 						CreateYes();
@@ -49,7 +59,8 @@ public class UIMTip : MonoBehaviour {
 				}
 				if (!CenterInfo.audioManager.isAttackBeat()&&isBAttack) {
 					if(yesTime!=CenterInfo.audioManager.GetRateTime()){
-						CreateNo();
+//						CreateNo();
+						CenterInfo.audioManager.mSound.PlayTipSound ();
 						CenterInfo.game.gameData.isBeatTouch = false;
 					}
 					isYes = false;
@@ -61,12 +72,12 @@ public class UIMTip : MonoBehaviour {
 				if (!CenterInfo.audioManager.mAdudio.IsFourSingle ()) {
 					if(list.Count>0){
 						for(int i = 0;i<list.Count;i++){
-							RectTransform t = (RectTransform)list[i];
+							UMovie t = (UMovie)list[i];
 							Destroy(t.gameObject);
 						}
 						list.Clear();
-						SetRandomBeatId();
 					}
+					SetRandomBeatId();
 				}
 				if(touchList.Count>0){
 					for(int i = 0;i<touchList.Count;i++){
@@ -79,15 +90,16 @@ public class UIMTip : MonoBehaviour {
 		}
 	}
 
+	private bool hasShowTip = true;
+
 	private void CreateT(){
-		CenterInfo.audioManager.mSound.PlayTipSound ();
 		RectTransform t = (RectTransform)GameObject.Instantiate (tMovie);
 		t.gameObject.SetActive(true);
 		t.SetParent(yesMovie.parent);
 		t.anchoredPosition = Vector3.right * allWidth * CenterInfo.audioManager.GetRateTime();
 		t.localPosition = new Vector3(t.localPosition.x,0,0);
 		t.localScale = Vector3.one;
-		list.Add(t);
+		list.Add(t.GetComponent<UMovie>());
 	}
 
 	private void CreateNo(){
@@ -119,7 +131,7 @@ public class UIMTip : MonoBehaviour {
 	public void Clear(){
 		if(list.Count>0){
 			for(int i = 0;i<list.Count;i++){
-				RectTransform t = (RectTransform)list[i];
+				UMovie t = (UMovie)list[i];
 				Destroy(t.gameObject);
 			}
 			list.Clear();

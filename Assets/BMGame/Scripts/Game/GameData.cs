@@ -5,7 +5,7 @@ using System.Collections;
  */
 public class GameData{
 
-	private string[] waveEnemy = {"SlimeS","SlimeM","SlimeL","SlimeL"};
+	private string[] waveEnemy = {"SlimeS","SlimeM","SlimeL"};
 	
 	public float searchTime = 0;
 	public float readyTime = 0;

@@ -23,7 +23,11 @@ public class MAudio{
 
 	public string[] beatList{
 		get{
+			if(GetFBeatTime()<2){
+				SetBeatId(-1);
+			}
 			return mxml.GetBeatList();
+
 		}
 	}
 
@@ -115,7 +119,7 @@ public class MAudio{
 	}
 
 	public bool IsRateTime(float rateTime){
-		if ((GetFBeenSeconds() > mTime.fourBTime * rateTime - 0.1) && (GetFBeenSeconds() < mTime.fourBTime * rateTime + 0.1)) {
+		if ((GetFBeenSeconds() > mTime.fourBTime * rateTime - 0.1f) && (GetFBeenSeconds() < mTime.fourBTime * rateTime + 0.1f)) {
 			return true;
 		}
 		return false;

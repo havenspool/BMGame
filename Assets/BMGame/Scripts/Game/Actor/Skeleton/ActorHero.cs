@@ -67,7 +67,7 @@ public class ActorHero : Actor{
 		bool isHitPoint = CenterInfo.audioManager.isMusicAttack;
 		if(!actorVO.isDead){
 			if(CenterInfo.audioManager.isBeat || isHitPoint){
-				if(!actorVO.isNormalAttack){
+				if(!actorVO.isNormalAttack && CenterInfo.audioManager.GetAType() !=0){
 					if(isHitPoint){
 						CenterInfo.game.gameData.isBeatTouch = true;
 						setAnimation(CenterInfo.audioManager.GetMusicAttack(),false,true);

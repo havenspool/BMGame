@@ -25,7 +25,7 @@ public class MTime{
 
 	public float fourBTime{
 		get{
-			return beatTime*4;
+			return beatTime*5;
 		}
 	}
 

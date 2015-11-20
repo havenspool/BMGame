@@ -60,7 +60,11 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public void ResetBeat(int id){
-		mAdudio.SetBeatId (id);
+		if (Random.value > 0.2f) {
+			mAdudio.SetBeatId (id);
+		} else {
+			mAdudio.SetBeatId (-1);
+		}
 		AttackBeatTimer = -1;
 	}
 
@@ -89,6 +93,7 @@ public class AudioManager : MonoBehaviour {
 	public bool isNextEnemyAttack{
 		get{
 			return mAdudio.IsRateTime(GetNextRateTime());
+
 		}
 	}
 
@@ -132,11 +137,11 @@ public class AudioManager : MonoBehaviour {
 
 	public float GetAType(){
 		int t = AttackBeatTimer;// - 1
-		if (t <= 0) {
-			t = 0;
-		}
 		if(t>=mAdudio.beatList.Length){
 			t = mAdudio.beatList.Length-1;
+		}
+		if (t <= 0) {
+			t = 0;
 		}
 		float aType = float.Parse(mAdudio.beatList[t]);
 		return aType;
@@ -159,7 +164,7 @@ public class AudioManager : MonoBehaviour {
 		for(var i=0;i<GetNextAttackTime();i++){
 			rateTime +=1/float.Parse(mAdudio.beatList[i]);
 		}
-		return rateTime / 4;
+		return (rateTime+1) / oneRateBeat;
 	}
 
 	public float GetRateTime(){
@@ -167,8 +172,10 @@ public class AudioManager : MonoBehaviour {
 		for(var i=0;i<AttackBeatTimer;i++){
 			rateTime +=1/float.Parse(mAdudio.beatList[i]);
 		}
-		return rateTime / 4;
+		return (rateTime+1) / oneRateBeat;
 	}
+
+	private int oneRateBeat = 5;
 
 	public int GetAttackTime(){
 		if(attackTime>=mAdudio.beatList.Length){
@@ -194,12 +201,16 @@ public class AudioManager : MonoBehaviour {
 	public bool isAttackBeat(){
 		int lg = mAdudio.beatList.Length;
 		float r = mAdudio.GetFourBRate();
-		for(int i =0;i<lg;i++){
-			float f = GetRateTime(i);
-			if(r>f-0.02f && r<f+0.03f){
-				AttackBeatTimer = i;
-				return true;
+		if (lg > 1) {
+			for (int i =0; i<lg; i++) {
+				float f = GetRateTime (i);
+				if (r > f - 0.02f && r < f + 0.01f) {
+					AttackBeatTimer = i;
+					return true;
+				}
 			}
+		} else {
+			AttackBeatTimer=-1;
 		}
 		return false;
 	}
@@ -215,7 +226,7 @@ public class AudioManager : MonoBehaviour {
 		for(var i=0;i<t;i++){
 			rateTime +=1/float.Parse(mAdudio.beatList[i]);
 		}
-		return  Util.CF (rateTime / 4, 3);
+		return  Util.CF ((rateTime+1) / oneRateBeat, 3);
 	}
 
 	public bool isBeat{
