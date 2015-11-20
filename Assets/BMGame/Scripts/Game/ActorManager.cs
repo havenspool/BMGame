@@ -9,12 +9,17 @@ public class ActorManager : MonoBehaviour {
 	public ActorHero heroActor;
 
 	void Awake(){
+		ClearEnemy ();
 		CenterInfo.actorManager = this;
 	}
 
 	public void OnFrame(){
-		CenterInfo.uigame.EnemyBlood(enemyActor.actorVO.rateBlood);
-		CenterInfo.uigame.HeroBlood(heroActor.actorVO.rateBlood);
+		if (null != enemyActor && enemyActor.actorVO != null) {
+			CenterInfo.uigame.EnemyBlood(enemyActor.actorVO.rateBlood);
+		}
+		if (null != heroActor && heroActor.actorVO != null) {
+			CenterInfo.uigame.HeroBlood(heroActor.actorVO.rateBlood);
+		}
 	}
 
 	public void OnUpdate(){
@@ -43,9 +48,7 @@ public class ActorManager : MonoBehaviour {
 	}
 	
 	public void ResetShowEnemy(){
-		if(enemyActor){
-			Destroy(enemyActor.gameObject);
-		}
+		ClearEnemy ();
 		GameObject go = AssetManager.CreateGameObject("Enemy/"+CenterInfo.game.gameData.thisWaveName);
 		go.transform.SetParent(transform);
 		go.transform.localPosition = new Vector3(0,0,-20);
@@ -53,6 +56,13 @@ public class ActorManager : MonoBehaviour {
 		enemyActor = go.GetComponent<ActorEnemy>();
 		enemyActor.setSpeed(CenterInfo.audioManager.GetScaleTime());
 		CenterInfo.game.mxml.SetBeatList (enemyActor.actorName);
+	}
+
+	public void ClearEnemy(){
+		if(enemyActor){
+			Destroy(enemyActor.gameObject);
+			enemyActor = null;
+		}
 	}
 
 	public void ResetShowHero(){

@@ -25,7 +25,7 @@ public class UIMTip : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		if (CenterInfo.game.isGamePlay) {
+		if (CenterInfo.game.gameData.isGameFight) {
 			RectTransform rt = (RectTransform)runMovie.transform;
 			rt.anchoredPosition = Vector3.right * CenterInfo.audioManager.mAdudio.GetFourBRate () * allWidth;
 			if (CenterInfo.audioManager.mAdudio.IsFourSingle ()) {

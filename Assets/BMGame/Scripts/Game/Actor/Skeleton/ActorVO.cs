@@ -4,9 +4,7 @@ using System.Collections;
 public class ActorVO{
 	
 //	public static enum AttackType{nu,attack1,attack12,attack14,attack18,attack116}
-	public ActorVO(string name){
-
-	}
+	public ActorVO(){}
 
 	public MActorVO mActorVO;
 

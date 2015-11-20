@@ -11,13 +11,13 @@ public class ActorEnemy : Actor{
 	private bool isBo;
 	
 	protected override void init(){
-		base.init();
 		isAutoForAttack2 = false;
-		actorVO = new EnemyVO(actorName);
+		base.init();
 	}
 
 	void Start (){
 		addEvent();
+		actorVO = new EnemyVO(actorName);
 		setSpeed(CenterInfo.audioManager.GetScaleTime());
 	}
 

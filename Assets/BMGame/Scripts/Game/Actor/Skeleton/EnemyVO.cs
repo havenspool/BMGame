@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyVO : ActorVO {
 
-	public EnemyVO(string name):base(name){
+	public EnemyVO(string name):base(){
 		mActorVO = CenterInfo.game.gameData.mxml.GetMActorVO (name);
 		ResetBlood(mActorVO.blood);
 	}

@@ -32,7 +32,7 @@ public class MXML{
 		musicDoc = Util.ReadAndLoadXml(musicUrl); 
 		actorDoc = Util.ReadAndLoadXml(actorUrl);
 		GetAllBeatVO ();
-		GetAllEnemyVO ();
+		GetAllActorVO ();
 	}
 
 	public string[] GetBeatList(){
@@ -62,7 +62,7 @@ public class MXML{
 
 	}  
 
-	private void GetAllEnemyVO(){  
+	private void GetAllActorVO(){  
 		XmlNode actorNode = actorDoc.SelectSingleNode("actor");  
 		XmlNodeList voList = actorNode.SelectNodes ("data");
 		foreach (XmlNode b in voList){  

@@ -11,11 +11,11 @@ public class ActorHero : Actor{
 	protected override void init(){
 		isAutoForAttack2 = true;
 		base.init();
-		actorVO = new HeroVO(actorName);
 	}
 
 	void Start (){
 		addEvent();
+		actorVO = new HeroVO(actorName);
 		setSpeed(CenterInfo.audioManager.GetScaleTime());
 	}
 

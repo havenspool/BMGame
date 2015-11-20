@@ -32,25 +32,41 @@ public class Game : MonoBehaviour {
 	void Start(){
 		uiGame = CenterInfo.uigame;
 		actorManager = CenterInfo.actorManager;
-		GameReStart ();
 	}
 
 	void Update(){
-		if (isGamePlay) {
-			actorManager.OnFrame ();
+		actorManager.OnFrame ();
+		if (gameData.isGameStart) {
+			gameData.searchTime ++;
+			if (gameData.searchTime > 8 * CenterInfo.frame) {
+				GameNextEnemyShow ();
+			}
+		} else if (gameData.isGameReady) {
+			gameData.readyTime ++;
+			if(gameData.readyTime>3* CenterInfo.frame) {
+				GameFight();
+				CenterInfo.uigame.ShowBompTxt(false,"");
+			}else{
+				CenterInfo.uigame.ShowBompTxt(true,ReadyTime().ToString());
+			}
 		}
+	}
+
+	private float ReadyTime(){
+		float f = Util.CF (4 - gameData.readyTime / CenterInfo.frame, 0);
+		if (f > 3) {
+			f = 3;
+		} else if (f < 1) {
+			f = 1;
+		}
+		return f;
 	}
 
 	void FixedUpdate () {
-		if (isGamePlay) {
+		if (gameData.isGameFight) {
 			uiGame.OnUpdate ();
 			actorManager.OnUpdate ();
 		}
-	}
-
-	public void GameStart(){
-		gameData.state = GameData.GameState.start;
-		CenterInfo.audioManager.AudioPlay ();
 	}
 
 	public void GameReStart(){
@@ -58,22 +74,29 @@ public class Game : MonoBehaviour {
 		ResetAll ();
 	}
 
+	public void GameNextEnemyShow(){
+		gameData.state = GameData.GameState.ready;
+		gameData.searchTime = 0;
+		gameData.NextWave ();
+		CenterInfo.actorManager.ResetShowEnemy();
+	}
+
+	public void GameFight(){
+		gameData.state = GameData.GameState.fight;
+		gameData.readyTime = 0;
+		CenterInfo.audioManager.AudioRePlay ();
+		CenterInfo.uigame.Clear ();
+	}
+
 	public void GameEnemyDead(){
-		if (gameData.NextWaveName () != "") {
-			gameData.state = GameData.GameState.stop;
-			CenterInfo.uigame.showNextButton ();
+		if (!gameData.isEndWave) {
+			gameData.state = GameData.GameState.start;
+//			CenterInfo.uigame.showNextButton ();
 			CenterInfo.audioManager.AudioStop ();
 			CenterInfo.uigame.Clear ();
 		} else {
 			GameEnd();
 		}
-	}
-
-	public void GameNextWave(){
-		gameData.state = GameData.GameState.start;
-		CenterInfo.actorManager.ResetShowEnemy();
-		CenterInfo.audioManager.AudioRePlay ();
-		CenterInfo.uigame.Clear ();
 	}
 
 	public void GameEnd(){
@@ -82,14 +105,16 @@ public class Game : MonoBehaviour {
 		CenterInfo.audioManager.AudioStop ();
 	}
 	
-	public void GameStop(){
-		gameData.state = GameData.GameState.stop;
-		CenterInfo.audioManager.AudioStop ();
-	}
+//	public void GameStop(){
+//		gameData.state = GameData.GameState.stop;
+//		CenterInfo.audioManager.AudioStop ();
+//	}
 
 	public void ResetAll(){
+		gameData.ResetAll ();
 		CenterInfo.audioManager.AudioRePlay ();
-		CenterInfo.actorManager.ResetAllActor();
+		CenterInfo.actorManager.ResetShowHero ();
+		CenterInfo.actorManager.ClearEnemy ();
 		CenterInfo.uigame.Clear ();
 
 	}

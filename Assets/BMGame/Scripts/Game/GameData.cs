@@ -6,7 +6,19 @@ using System.Collections;
 public class GameData{
 
 	private string[] waveEnemy = {"SlimeS","SlimeM","SlimeL","SlimeL"};
-	private int thisWave = 0;
+	
+	public float searchTime = 0;
+	public float readyTime = 0;
+	public bool isBeatTouch = false;
+	public bool isGuild = true;
+
+	
+	public enum GameState{start,ready,fight,stop,end}
+	public GameState state;
+
+
+
+	private int thisWave = -1;
 	public string thisWaveName{
 		get{
 			if(thisWave<waveEnemy.Length){
@@ -25,13 +37,24 @@ public class GameData{
 			return m;
 		}
 	}
-	
-	public bool isBeatTouch = false;
 
-	public bool isGuild = true;//
+	public bool isGameReady{
+		get{
+			return state ==GameState.ready;
+		}
+	}
 
-	public enum GameState{start,stop,end}
-	public GameState state;
+	public bool isGameStart{
+		get{
+			return state ==GameState.start;
+		}
+	}
+
+	public bool isGameFight{
+		get{
+			return state ==GameState.fight;
+		}
+	}
 
 	public bool isGameOver{
 		get{
@@ -45,16 +68,39 @@ public class GameData{
 		}
 	}
 
-	public string NextWaveName(){
+	public string NextWave(){
 		thisWave ++;
-		if (thisWave < waveEnemy.Length) {
-			return waveEnemy[thisWave];
+		if (waveEnemy.Length > 0) {
+			if (thisWave < waveEnemy.Length) {
+				return waveEnemy [thisWave];
+			} else {
+				thisWave = waveEnemy.Length - 1;
+			}
+		} else {
+			thisWave = 0;
 		}
+
 		return "";
 	}
 
-	public void Reset(){
+	public bool isEndWave{
+		get{
+			if (thisWave < waveEnemy.Length-1) {
+				return false;
+			}
+			return true;
+		}
+	}
+
+	public void ResetAll(){
 		thisWave = 0;
+		ResetStart ();
+	}
+
+	public void ResetStart(){
+		searchTime = 0;
 		isBeatTouch = false;
 	}
+
+
 }

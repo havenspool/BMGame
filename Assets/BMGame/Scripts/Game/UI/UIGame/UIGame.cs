@@ -23,21 +23,12 @@ public class UIGame : MonoBehaviour {
 	void Awake () {
 		CenterInfo.uigame = this;
 		ShowStart();
-
 	}
 	
 	public void OnUpdate () {
-		if (CenterInfo.game.isGamePlay) {
-//			if(CenterInfo.audioManager.isBeat){
-//				bompTxt.text = "YES";
-//			}else{
-//				bompTxt.text = "NO";
-//			}
-			if(Input.GetKeyDown(KeyCode.Space)){
-				OnAttackDown();
-			}
+		if(Input.GetKeyDown(KeyCode.Space)){
+			OnAttackDown();
 		}
-
 	}
 
 	//------------------------tip---------------------------
@@ -77,7 +68,7 @@ public class UIGame : MonoBehaviour {
 
 	public void OnNextClick(){
 		showAttackButton();
-		CenterInfo.game.GameNextWave ();
+		CenterInfo.game.GameFight ();
 	}
 
 	public void OnReClick(){
@@ -88,13 +79,18 @@ public class UIGame : MonoBehaviour {
 	public void ShowStart(){
 		showAttackButton();
 		end.SetActive(false);
-//		bompTxt.gameObject.SetActive(true);
+//		
 	}
 
 	public void ShowEnd(){
 		showReButton();
 		end.SetActive(true);
 //		bompTxt.gameObject.SetActive(false);
+	}
+
+	public void ShowBompTxt(bool bo,string txt){
+		bompTxt.gameObject.SetActive(bo);
+		bompTxt.text = txt;
 	}
 
 	public void showReButton(){
