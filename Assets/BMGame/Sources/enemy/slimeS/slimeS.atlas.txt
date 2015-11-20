@@ -109,21 +109,21 @@ highlight
   orig: 38, 19
   offset: 0, 0
   index: -1
-hitFX1
+hurtFX1
   rotate: false
   xy: 334, 167
   size: 124, 124
   orig: 124, 124
   offset: 0, 0
   index: -1
-hitFX2
+hurtFX2
   rotate: false
   xy: 2, 2
   size: 168, 168
   orig: 168, 168
   offset: 0, 0
   index: -1
-hitFX3
+hurtFX3
   rotate: false
   xy: 2, 172
   size: 240, 240
