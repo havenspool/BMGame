@@ -8,5 +8,9 @@ public class HeroVO : ActorVO {
 		ResetBlood(mActorVO.blood);
 	}
 
-
+//	public override string attackNormal{
+//		get{
+//			return "miss";//14f 0.467s
+//		}
+//	}
 }

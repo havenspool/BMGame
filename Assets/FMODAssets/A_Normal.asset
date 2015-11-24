@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e06c992c0c162f94a880e74e722cb286, type: 3}
-  m_Name: A_BEAT
+  m_Name: A_Normal
   m_EditorClassIdentifier: 
-  path: event:/A_BEAT
-  id: '{5be852fd-8688-4b5a-91ee-1de31fa02a2d}'
+  path: event:/A_Normal
+  id: '{a5ed81b8-ced5-443d-b7f7-8f0d736a1cd0}'

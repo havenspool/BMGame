@@ -1,152 +1,152 @@
 
 slimeL.png
-size: 475,1032
+size: 491,1032
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 !
   rotate: false
-  xy: 212, 33
+  xy: 429, 164
   size: 29, 137
   orig: 29, 137
   offset: 0, 0
   index: -1
 body
   rotate: false
-  xy: 239, 609
-  size: 232, 163
-  orig: 232, 163
+  xy: 245, 599
+  size: 237, 168
+  orig: 237, 168
   offset: 0, 0
   index: -1
 body 1
-  rotate: true
-  xy: 244, 175
-  size: 305, 88
-  orig: 305, 89
-  offset: 0, 1
+  rotate: false
+  xy: 2, 66
+  size: 310, 94
+  orig: 310, 94
+  offset: 0, 0
   index: -1
 body 2
   rotate: false
-  xy: 2, 672
-  size: 235, 358
-  orig: 236, 358
+  xy: 2, 667
+  size: 241, 363
+  orig: 241, 363
   offset: 0, 0
   index: -1
 body 4-1
   rotate: false
-  xy: 239, 774
-  size: 222, 256
-  orig: 222, 256
+  xy: 245, 769
+  size: 227, 261
+  orig: 227, 261
   offset: 0, 0
   index: -1
 body 4-2
   rotate: false
-  xy: 2, 414
-  size: 230, 256
-  orig: 231, 256
+  xy: 2, 404
+  size: 236, 261
+  orig: 236, 261
   offset: 0, 0
   index: -1
 bt
   rotate: true
-  xy: 243, 36
-  size: 134, 36
-  orig: 135, 36
+  xy: 454, 463
+  size: 134, 35
+  orig: 134, 35
   offset: 0, 0
   index: -1
 eye
-  rotate: false
-  xy: 335, 100
-  size: 97, 65
-  orig: 97, 65
+  rotate: true
+  xy: 390, 303
+  size: 124, 93
+  orig: 124, 93
   offset: 0, 0
   index: -1
 eye hurt
-  rotate: true
-  xy: 380, 507
-  size: 100, 83
-  orig: 101, 83
+  rotate: false
+  xy: 314, 53
+  size: 111, 121
+  orig: 111, 121
   offset: 0, 0
   index: -1
 fx1
-  rotate: false
-  xy: 281, 53
-  size: 52, 112
-  orig: 52, 112
+  rotate: true
+  xy: 191, 13
+  size: 51, 111
+  orig: 51, 111
   offset: 0, 0
   index: -1
 fx2
-  rotate: false
-  xy: 334, 293
-  size: 61, 187
-  orig: 61, 188
+  rotate: true
+  xy: 2, 4
+  size: 60, 187
+  orig: 60, 187
   offset: 0, 0
   index: -1
 fx3
   rotate: false
-  xy: 397, 336
-  size: 42, 169
-  orig: 43, 169
-  offset: 1, 0
+  xy: 410, 429
+  size: 42, 168
+  orig: 42, 168
+  offset: 0, 0
   index: -1
 fx4
-  rotate: false
-  xy: 172, 9
-  size: 38, 161
-  orig: 38, 161
+  rotate: true
+  xy: 304, 14
+  size: 37, 160
+  orig: 37, 160
   offset: 0, 0
   index: -1
 fx5
-  rotate: true
-  xy: 335, 40
-  size: 58, 66
-  orig: 58, 66
+  rotate: false
+  xy: 370, 235
+  size: 57, 65
+  orig: 57, 65
   offset: 0, 0
   index: -1
 highlight
   rotate: false
-  xy: 397, 315
+  xy: 370, 214
   size: 37, 19
   orig: 38, 19
   offset: 0, 0
   index: -1
 hurtFX1
   rotate: false
-  xy: 334, 167
+  xy: 244, 176
   size: 124, 124
   orig: 124, 124
   offset: 0, 0
   index: -1
 hurtFX2
   rotate: false
-  xy: 2, 2
+  xy: 240, 429
   size: 168, 168
   orig: 168, 168
   offset: 0, 0
   index: -1
 hurtFX3
   rotate: false
-  xy: 2, 172
+  xy: 2, 162
   size: 240, 240
   orig: 240, 240
   offset: 0, 0
   index: -1
 particle1
-  rotate: false
-  xy: 441, 488
+  rotate: true
+  xy: 454, 429
   size: 32, 17
-  orig: 33, 18
+  orig: 32, 17
   offset: 0, 0
   index: -1
 particle2
-  rotate: true
-  xy: 463, 1016
-  size: 14, 10
-  orig: 15, 10
+  rotate: false
+  xy: 191, 2
+  size: 14, 9
+  orig: 14, 9
   offset: 0, 0
   index: -1
 warning
   rotate: false
-  xy: 234, 482
+  xy: 244, 302
   size: 144, 125
   orig: 144, 125
   offset: 0, 0

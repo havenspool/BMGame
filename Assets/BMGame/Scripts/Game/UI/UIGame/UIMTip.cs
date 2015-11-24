@@ -59,8 +59,6 @@ public class UIMTip : MonoBehaviour {
 				}
 				if (!CenterInfo.audioManager.isAttackBeat()&&isBAttack) {
 					if(yesTime!=CenterInfo.audioManager.GetRateTime()){
-//						CreateNo();
-						CenterInfo.audioManager.mSound.PlayTipSound ();
 						CenterInfo.game.gameData.isBeatTouch = false;
 					}
 					isYes = false;
@@ -91,8 +89,8 @@ public class UIMTip : MonoBehaviour {
 	}
 
 	private bool hasShowTip = true;
-
 	private void CreateT(){
+		CenterInfo.audioManager.mSound.PlayTipSound ();
 		RectTransform t = (RectTransform)GameObject.Instantiate (tMovie);
 		t.gameObject.SetActive(true);
 		t.SetParent(yesMovie.parent);

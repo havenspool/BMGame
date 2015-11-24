@@ -11,6 +11,9 @@ public class MAudio{
 		mxml = CenterInfo.game.gameData.mxml;
 	}
 
+	public MBeatList getMBeatList(){
+		return mxml.getMBeatList ();
+	}
 	public int beatListCount{
 		get{
 			return mxml.listCount;
@@ -23,11 +26,10 @@ public class MAudio{
 
 	public string[] beatList{
 		get{
-			if(GetFBeatTime()<2){
+			if(GetFBeatTime()<mxml.getMBeatList().waitTime){
 				SetBeatId(-1);
 			}
 			return mxml.GetBeatList();
-
 		}
 	}
 

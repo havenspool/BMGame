@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<music>
+	<actor name = "SlimeS" waitTime = "2" randomWait="0.2">
+		<beat later = "1">1,1,1,1</beat>
+    		<beat later = "2">1,1,1,2,2</beat>  
+    </actor>
+    <actor name = "SlimeM" waitTime = "2" randomWait="0.2">
+		<beat later = "1">1,1,1,1</beat>
+    		<beat later = "2">1,1,2,2,1</beat>  
+		<beat later = "3">2,2,2,2,2,2,1</beat>  
+		<beat later = "4">2,2,2,2,4,4,4,4,4,4,4,4,</beat>  
+    </actor>
+    <actor name = "SlimeL" waitTime = "2" randomWait="0.2">
+		<beat later = "1">1,1,2,2,1</beat>
+    		<beat later = "2">4,4,4,4,1,2,2,1</beat>  
+<beat later = "3">1,1,1,1</beat>  
+<beat later = "4">2,2,2,2,2,2,1</beat>  
+    </actor>
+</music>  

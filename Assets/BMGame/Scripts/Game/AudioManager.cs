@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public void ResetBeat(int id){
-		if (Random.value > 0.2f) {
+		if (Random.value > mAdudio.getMBeatList().randomWait) {
 			mAdudio.SetBeatId (id);
 		} else {
 			mAdudio.SetBeatId (-1);
@@ -93,7 +93,6 @@ public class AudioManager : MonoBehaviour {
 	public bool isNextEnemyAttack{
 		get{
 			return mAdudio.IsRateTime(GetNextRateTime());
-
 		}
 	}
 

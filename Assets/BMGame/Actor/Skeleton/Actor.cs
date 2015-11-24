@@ -8,6 +8,10 @@ public class Actor : MonoBehaviour,IActor{
 
 	[HideInInspector]
 	public bool isAutoForAttack2 =false;
+	private float sr = 1;
+	private float sg = 1;
+	private float sb = 1;
+	private float sa = 1;
 
 	void Awake(){
 		init();
@@ -46,6 +50,22 @@ public class Actor : MonoBehaviour,IActor{
 		}
 	}
 
+	//actor.setColor(155/255,1,1,1);
+	public void setColor(float r,float g,float b,float a){
+		sr = r;
+		sg = g;
+		sb = b;
+		sa = a;
+		resetColor ();
+	}
+	
+	private void resetColor(){
+		skeletonAnimation.skeleton.R = sr;
+		skeletonAnimation.skeleton.G = sg;
+		skeletonAnimation.skeleton.B = sb;
+		skeletonAnimation.skeleton.A = sa;
+	}
+
 	public void AnimationStop(){
 		skeletonAnimation.valid = false;
 	}
@@ -64,13 +84,7 @@ public class Actor : MonoBehaviour,IActor{
 	
 	protected virtual void OnStateEvent(Spine.AnimationState state,int trackIndex,Spine.Event e){}
 	protected virtual void OnStateComplete(Spine.AnimationState state,int trackIndex,int loop){
-		if(actorVO.currentAnimation != actorVO.die&&actorVO.currentAnimation != actorVO.ready){
-//			if(actorVO.currentAnimation == actorVO. && isAutoForAttack2){
-//				setAnimation(actorVO.attackNormal,false,false);
-//				actorVO.currentAnimation = actorVO.attack_11;
-//			}else{
-//
-//			}
+		if(actorVO.currentAnimation != actorVO.die && actorVO.currentAnimation != actorVO.ready){
 			setAnimation(actorVO.idle,true,false);
 		}
 	}

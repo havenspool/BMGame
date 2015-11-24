@@ -5,9 +5,9 @@ using System.Collections;
  */
 public class MTime{
 	
-	public static float OffSetStartTime = 0.373f;
+	public static float OffSetStartTime = 0;//0.373f;
 	private float normalBPM = 120;//40-180
-	private float bpm = 128;  
+	private float bpm = 128;  //60;//
 
 	private float startTime;
 	private float tTime;

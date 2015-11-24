@@ -2,7 +2,11 @@
 
 public class MBeatVO{
 
-	public float beatLater = 0;
+	public float waitTime=2;
+
+	public float randomWait=0.2f;
+
+//	public float beatLater = 0;
 
 	public string attackList = "";
 	

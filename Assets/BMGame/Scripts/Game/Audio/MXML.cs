@@ -7,25 +7,28 @@ using System.Text;
 using System.Collections.Generic; 
 
 public class MXML{
-
-	private string actorUrl = Application.dataPath +"/Data/Actor.xml";
-	private string musicUrl =  Application.dataPath +"/Data/BeatTime.xml";
-	private XmlDocument musicDoc;
-	private Dictionary<string,MActorVO> _allActorDy = new Dictionary<string,MActorVO>();  //Hashtable
-	private Dictionary<string,List<MBeatVO>> _allBeatDy = new Dictionary<string,List<MBeatVO>>();  //Hashtable
-	private List<MBeatVO> aBeatList = new List<MBeatVO>();  
-	private XmlDocument actorDoc;
 	
 	public int listI = 0;
+	private string actorUrl = "/Actor.txt";
+	private string musicUrl =  "/BeatTime.txt";
+	private XmlDocument musicDoc;
+	private Dictionary<string,MActorVO> _allActorDy = new Dictionary<string,MActorVO>();
+	private Dictionary<string,MBeatList> _allBeatDy = new Dictionary<string,MBeatList>();
+	private MBeatList mbeatList;
+	private XmlDocument actorDoc;
+
+	public MBeatList getMBeatList(){
+		return mbeatList;
+	}
 
 	public int listCount{
 		get{
-			return aBeatList.Count;
+			return mbeatList.Count;
 		}
 	}
 
 	public void SetBeatList(string name){
-		aBeatList = _allBeatDy[name];
+		mbeatList = _allBeatDy[name];
 	}
 
 	public MXML(){
@@ -37,8 +40,7 @@ public class MXML{
 
 	public string[] GetBeatList(){
 		if (listI >= 0) {
-			MBeatVO beatVO = aBeatList [listI];
-			return beatVO.GetBeatList ();
+			return mbeatList.getBeatList(listI);
 		} else {
 			return new string[]{"0"};
 		}
@@ -54,14 +56,15 @@ public class MXML{
 		XmlNodeList actorNodeList = musicNode.SelectNodes ("actor");
 		foreach (XmlNode a in actorNodeList) {  
 			XmlNodeList beatNodeList = a.SelectNodes ("beat");
-			List<MBeatVO> aList = new List<MBeatVO>();  
+			MBeatList beatlist = new MBeatList();
+			beatlist.waitTime = float.Parse(a.Attributes["waitTime"].Value);
+			beatlist.randomWait = float.Parse(a.Attributes["randomWait"].Value);
 			foreach (XmlNode b in beatNodeList){  
 				MBeatVO beatVO = new MBeatVO();
-				beatVO.beatLater = float.Parse(b.Attributes["later"].Value);
 				beatVO.attackList = b.InnerText;
-				aList.Add(beatVO);
+				beatlist.Add(beatVO);
 			}
-			_allBeatDy.Add(a.Attributes["name"].Value,aList);
+			_allBeatDy.Add(a.Attributes["name"].Value,beatlist);
 		}
 
 	}  

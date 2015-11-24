@@ -60,9 +60,18 @@ public class MSound{
 		touchSound.start ();
 	}
 
+	private EventInstance aNormalSound;
+	public void PlayANormalSound(){
+		if (null == aNormalSound) {
+			aNormalSound = FMOD_StudioSystem.instance.GetEvent("event:/"+SoudName.A_Normal);
+		}
+		aNormalSound.start ();
+	}
 
 	public void PlaySound(string name){
-		if (name == SoudName.BEAT1) {
+		if (name == SoudName.A_Normal) {
+			PlayANormalSound ();
+		} else if (name == SoudName.BEAT1) {
 			PlayBeatSound1 ();
 		} else if (name == SoudName.BEAT1_2) {
 			PlayBeatSound12();
@@ -79,8 +88,9 @@ public class MSound{
 }
 
 class SoudName{
-
 	public static string A_BEAT = "A_BEAT";
+
+	public static string A_Normal = "A_Normal";
 
 	public static string A_TIP = "A_TIP";
 

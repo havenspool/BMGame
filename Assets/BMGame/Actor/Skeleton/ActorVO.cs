@@ -45,7 +45,7 @@ public class ActorVO{
 
 	public bool isNormalAttack{
 		get{
-			if(currentAnimation == attackNormal){//currentAnimation == attackBeat || 
+			if(currentAnimation == attackMiss || currentAnimation == attackNormal){
 				return true;
 			}
 			return false;
@@ -113,6 +113,11 @@ public class ActorVO{
 //			return "attack_11";//14f  0.467s
 //		}
 //	}
+	public virtual string attackMiss{
+		get{
+			return "miss";
+		}
+	}
 	public virtual string attackNormal{
 		get{
 			return "attackNormal";//14f 0.467s

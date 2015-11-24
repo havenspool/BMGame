@@ -67,7 +67,7 @@ public class ActorEnemy : Actor{
 				if(CenterInfo.audioManager.isBeat){
 					laterTimer = laterTimer*1/3f;
 				}else{
-					laterTimer = laterTimer*4/3f;
+					laterTimer = laterTimer*1/3f;
 				}
 			}
 			StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => {
@@ -92,8 +92,10 @@ public class ActorEnemy : Actor{
 					setAnimation(actorVO.die,false,false);
 					CenterInfo.game.GameEnemyDead();
 				}
+				setColor(1,1,1,1);
 				CenterInfo.uigame.ShowFlyText(hurtBlood.ToString(),new Vector3(110,216,20));
 			},laterTimer));
+			setColor(1,250/255,250/255,0.9f);
 		}
 	}
 }

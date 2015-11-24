@@ -12,7 +12,6 @@ public class UMovie : MonoBehaviour
 	public string movieName;
 	public List<Sprite> lSprites;
 	public float fSep = 0.05f;
-
 	private bool isStop = false;
 	
 	public float showerWidth{
@@ -97,16 +96,15 @@ public class UMovie : MonoBehaviour
 
 	private Image shower;
 	private bool isPing = false;
-	
+	float fDelta = 0;
 	int curFrame = 0;
-	public int FrameCount
-	{
+
+	public int FrameCount{
 		get{
 			return lSprites.Count-1;
 		}
 	}
-	
-	float fDelta = 0;
+
 	void Update(){
 		if(!isStop){
 			fDelta += Time.deltaTime;
@@ -137,7 +135,6 @@ public class UMovie : MonoBehaviour
 				FrameShow(curFrame);
 			}
 		}
-
 	}
 	
 	public delegate void delegateMovieEvent();

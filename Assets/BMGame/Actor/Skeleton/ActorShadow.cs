@@ -9,12 +9,12 @@ public class ActorShadow : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		bodyInitPosition = body.position;
-		initPosition = transform.position;
+		bodyInitPosition = body.localPosition;
+		initPosition = transform.localPosition;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = initPosition + Vector3.right * (body.position.x - bodyInitPosition.x);
+		transform.localPosition = initPosition + Vector3.right * (body.localPosition.x - bodyInitPosition.x)*40;
 	}
 }

@@ -30,20 +30,6 @@ public class ActorHero : Actor{
 	}
 	
 	public override void OnHurt(int AttackType){
-//		if(!isHurtClick && AttackType>0){
-//			isHurtClick = true;
-//			float laterTimer = CenterInfo.audioManager.getBeatTime;
-//			if(AttackType==1){
-//				laterTimer = laterTimer*2/3f;
-//			}else if(AttackType==2){
-//				laterTimer = laterTimer*1/12f;
-//			}else if(AttackType==4){
-//				laterTimer = laterTimer*1/1024f;
-//			}
-//			StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => {
-//				hurtTBlood(AttackType);
-//			},laterTimer));
-//		}
 		hurtTBlood(AttackType);
 	}
 
@@ -58,8 +44,12 @@ public class ActorHero : Actor{
 				CenterInfo.game.GameEnd();
 			}
 			if(hurtBlood>0){
+				setColor(1,155/255,155/255,1);
 				CenterInfo.uigame.ShowFlyText(hurtBlood.ToString(),new Vector3(-110,216,20));
 			}
+			StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => {
+				setColor(1,1,1,1);
+			},0.5f));
 		}
 	}
 
@@ -67,11 +57,12 @@ public class ActorHero : Actor{
 		bool isHitPoint = CenterInfo.audioManager.isMusicAttack;
 		if(!actorVO.isDead){
 			if(CenterInfo.audioManager.isBeat || isHitPoint){
-				if(!actorVO.isNormalAttack && CenterInfo.audioManager.GetAType() !=0){
-					if(isHitPoint){
+				if(!actorVO.isNormalAttack){
+					if(isHitPoint && CenterInfo.audioManager.GetAType() !=0){
 						CenterInfo.game.gameData.isBeatTouch = true;
 						setAnimation(CenterInfo.audioManager.GetMusicAttack(),false,true);
 					}else{
+						CenterInfo.audioManager.PlaySound ("A_BEAT");
 						setAnimation(actorVO.attackBeat,false,true);
 					}
 					attackType = 2;
@@ -89,10 +80,14 @@ public class ActorHero : Actor{
 		return attackType;
 	}
 
-
 	private int NormalAttack(){
 		if(!actorVO.isNormalAttack){
-			setAnimation(actorVO.attackNormal,false,false);
+			CenterInfo.audioManager.PlaySound ("A_Normal");
+			if (!CenterInfo.audioManager.mAdudio.IsFourSingle () && CenterInfo.audioManager.mAdudio.beatList.Length>1) {
+				setAnimation(actorVO.attackMiss,false,false);
+			}else{
+				setAnimation(actorVO.attackNormal,false,false);
+			}
 			attackType = 1;
 		}else{
 			attackType = 0;

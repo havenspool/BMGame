@@ -79,7 +79,6 @@ public class UIGame : MonoBehaviour {
 	public void ShowStart(){
 		showAttackButton();
 		end.SetActive(false);
-//		
 	}
 
 	public void ShowEnd(){

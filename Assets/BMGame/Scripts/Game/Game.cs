@@ -101,8 +101,10 @@ public class Game : MonoBehaviour {
 
 	public void GameEnd(){
 		gameData.state = GameData.GameState.end;
-		CenterInfo.uigame.ShowEnd();
-		CenterInfo.audioManager.AudioStop ();
+		StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => {
+			CenterInfo.uigame.ShowEnd();
+			CenterInfo.audioManager.AudioStop ();
+		},3f));
 	}
 	
 //	public void GameStop(){

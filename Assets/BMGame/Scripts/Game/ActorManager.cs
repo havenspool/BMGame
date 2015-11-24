@@ -38,7 +38,7 @@ public class ActorManager : MonoBehaviour {
 	public void OnHeroAttack(){
 		if (CenterInfo.game.gameData.isGameFight) {
 			int type = heroActor.OnAttack();
-			if(type>0){
+			if(type>1){
 				enemyActor.OnHurt(type);
 			}
 		}
