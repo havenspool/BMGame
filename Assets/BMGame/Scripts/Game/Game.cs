@@ -69,10 +69,10 @@ public class Game : MonoBehaviour {
 		}
 	}
 
-	public void GameReStart(){
-		gameData.state = GameData.GameState.start;
-		ResetAll ();
-	}
+//	public void GameReStart(){
+//		gameData.state = GameData.GameState.start;
+//		ResetAll ();
+//	}
 
 	public void GameNextEnemyShow(){
 		gameData.state = GameData.GameState.ready;
@@ -89,11 +89,13 @@ public class Game : MonoBehaviour {
 	}
 
 	public void GameEnemyDead(){
+		gameData.state = GameData.GameState.stop;
 		if (!gameData.isEndWave) {
-			gameData.state = GameData.GameState.start;
-//			CenterInfo.uigame.showNextButton ();
-			CenterInfo.audioManager.AudioStop ();
 			CenterInfo.uigame.Clear ();
+			StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => {
+				gameData.state = GameData.GameState.start;
+				CenterInfo.audioManager.AudioStop ();
+			},3f));
 		} else {
 			GameEnd();
 		}
@@ -101,6 +103,7 @@ public class Game : MonoBehaviour {
 
 	public void GameEnd(){
 		gameData.state = GameData.GameState.end;
+		CenterInfo.uigame.Clear ();
 		StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => {
 			CenterInfo.uigame.ShowEnd();
 			CenterInfo.audioManager.AudioStop ();

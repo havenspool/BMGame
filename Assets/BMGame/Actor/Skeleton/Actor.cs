@@ -12,6 +12,8 @@ public class Actor : MonoBehaviour,IActor{
 	private float sg = 1;
 	private float sb = 1;
 	private float sa = 1;
+	
+	public bool isBlasting= false;//爆气
 
 	void Awake(){
 		init();
@@ -74,6 +76,24 @@ public class Actor : MonoBehaviour,IActor{
 		skeletonAnimation.valid = true;
 	}
 
+	protected void SetAnimationIdle(){
+		if(isBlasting){
+			setAnimation (actorVO.powIdle, true, false);
+		}else{
+			setAnimation (actorVO.idle, true, false);
+		}
+	}
+
+	protected void SetPowAttack(){
+		if (actorVO.currentAnimation != actorVO.powStart || actorVO.currentAnimation != actorVO.powEnd) {
+			if (actorVO.currentAnimation == actorVO.powAttack1) {
+				setAnimation (actorVO.powAttack2, false, true);
+			} else {
+				setAnimation(actorVO.powAttack1,false,true);
+			}
+		}
+	}
+
 	public void setSpeed(float speed){
 		skeletonAnimation.timeScale = speed;
 	}
@@ -84,8 +104,8 @@ public class Actor : MonoBehaviour,IActor{
 	
 	protected virtual void OnStateEvent(Spine.AnimationState state,int trackIndex,Spine.Event e){}
 	protected virtual void OnStateComplete(Spine.AnimationState state,int trackIndex,int loop){
-		if(actorVO.currentAnimation != actorVO.die && actorVO.currentAnimation != actorVO.ready){
-			setAnimation(actorVO.idle,true,false);
+		if(actorVO.currentAnimation != actorVO.die && actorVO.currentAnimation != actorVO.warning && actorVO.currentAnimation != actorVO.idle&& actorVO.currentAnimation != actorVO.powIdle){
+			SetAnimationIdle();
 		}
 	}
 	protected virtual void OnStateStart(Spine.AnimationState state,int trackIndex){}

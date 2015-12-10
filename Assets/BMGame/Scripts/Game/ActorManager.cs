@@ -19,6 +19,7 @@ public class ActorManager : MonoBehaviour {
 		}
 		if (null != heroActor && heroActor.actorVO != null) {
 			CenterInfo.uigame.HeroBlood(heroActor.actorVO.rateBlood);
+			CenterInfo.uigame.HeroPower(heroActor.actorVO.ratePower);
 		}
 	}
 
@@ -44,6 +45,29 @@ public class ActorManager : MonoBehaviour {
 		}
 	}
 
+	public bool isBlasting(){
+		if (heroActor != null && heroActor.isBlasting) {
+			return true;
+		}
+		return false;
+	}
+
+	public void OnEnemyAttack(){
+		if (null != enemyActor) {
+			enemyActor.onAttack();
+		}
+	}
+	public void OnEnemyPowerEnd(){
+		if (null != enemyActor) {
+			enemyActor.onPowEnd();
+		}
+	}
+	public void OnEnemyPowerStart(){
+		if (null != enemyActor) {
+			enemyActor.onPowStart();
+		}
+	}
+
 	public void ResetAllActor(){
 		ResetShowEnemy();
 		ResetShowHero();
@@ -58,6 +82,9 @@ public class ActorManager : MonoBehaviour {
 		enemyActor = go.GetComponent<ActorEnemy>();
 		enemyActor.setSpeed(CenterInfo.audioManager.GetScaleTime());
 		CenterInfo.game.mxml.SetBeatList (enemyActor.actorName);
+		if (null != heroActor) {
+			heroActor.PowerEnd ();
+		}
 	}
 
 	public void ClearEnemy(){
@@ -76,5 +103,6 @@ public class ActorManager : MonoBehaviour {
 		go.transform.localPosition = new Vector3(0,0,-20);
 		go.transform.localScale = new Vector3(1,1,1);
 		heroActor = go.GetComponent<ActorHero>();
+		heroActor.PowerEnd ();
 	}
 }

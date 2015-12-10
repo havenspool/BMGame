@@ -16,26 +16,7 @@ public class Debugger : MonoBehaviour{
 	public static void trace(string str){
 		//DoTrace(str);
 	}	
-	
-//	private static int lastNACount = 0;
-//	public static void traceCMD(CMD c){
-//		return;
-//		if(c == CMD.NA){
-//			if(lastNACount > 0){
-//				if(lastNACount == 20){
-//					AppendTrace("+");
-//				}else if(lastNACount < 20){
-//					AppendTrace(".");
-//				}
-//			}else{
-//				AppendTraceLine(".");
-//			}
-//			lastNACount++;
-//		}else{
-//			lastNACount = 0;
-//			AppendTrace(c.ToString() + ", ");
-//		}
-//	}	
+
 	
 	public static void Note(string str){
 		//DoTrace(str);

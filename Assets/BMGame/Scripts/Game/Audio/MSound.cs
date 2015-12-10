@@ -4,10 +4,26 @@ using FMOD.Studio;
 
 public class MSound{
 
+	public static string BEATHit = "BeatHit";
+	public static string ATTACK = "Attack";
+	public static string TIPS = "Tips";
+	public static string HURT = "Hurt";
+	public static string HERODIE = "HeroDie";
+	public static string DIE = "Die";
+	public static string MISS = "Miss";
+	
+	private EventInstance aNormalSound;
+	public void PlayANormalSound(){
+		if (null == aNormalSound) {
+			aNormalSound = FMOD_StudioSystem.instance.GetEvent("event:/"+ATTACK);
+		}
+		aNormalSound.start ();
+	}
+
 	private EventInstance abeatSound;
 	public void PlayABeatSound(){
 		if (null == abeatSound) {
-			abeatSound = FMOD_StudioSystem.instance.GetEvent("event:/"+SoudName.A_BEAT);
+			abeatSound = FMOD_StudioSystem.instance.GetEvent("event:/"+BEATHit);
 		}
 		abeatSound.start ();
 	}
@@ -15,93 +31,59 @@ public class MSound{
 	private EventInstance aTipSound;
 	public void PlayTipSound(){
 		if (null == aTipSound) {
-			aTipSound = FMOD_StudioSystem.instance.GetEvent("event:/"+SoudName.A_TIP);
+			aTipSound = FMOD_StudioSystem.instance.GetEvent("event:/"+TIPS);
 		}
 		aTipSound.start ();
 	}
 
-	private EventInstance beatSound1;
-	public void PlayBeatSound1(){
-		if (null == beatSound1) {
-			beatSound1 = FMOD_StudioSystem.instance.GetEvent("event:/"+SoudName.BEAT1);
+	private EventInstance hurtSound;
+	public void PlayHurtSound(){
+		if (null == hurtSound) {
+			hurtSound = FMOD_StudioSystem.instance.GetEvent("event:/"+HURT);
 		}
-		beatSound1.start ();
+		hurtSound.start ();
 	}
 
-	private EventInstance beatSound12;
-	public void PlayBeatSound12(){
-		if (null == beatSound12) {
-			beatSound12 = FMOD_StudioSystem.instance.GetEvent("event:/"+SoudName.BEAT1_2);
+	private EventInstance heroDieSound;
+	public void PlayHeroDieSound(){
+		if (null == heroDieSound) {
+			heroDieSound = FMOD_StudioSystem.instance.GetEvent("event:/"+HERODIE);
 		}
-		beatSound12.start ();
+		heroDieSound.start ();
 	}
 
-	private EventInstance beatSound14;
-	public void PlayBeatSound14(){
-		if (null == beatSound14) {
-			beatSound14 = FMOD_StudioSystem.instance.GetEvent("event:/"+SoudName.BEAT1_4);
+	private EventInstance dieSound;
+	public void PlayDieSound(){
+		if (null == dieSound) {
+			dieSound = FMOD_StudioSystem.instance.GetEvent("event:/"+DIE);
 		}
-		beatSound14.start ();
+		dieSound.start ();
 	}
 
-	private EventInstance beatSound18;
-	public void PlayBeatSound18(){
-		if (null == beatSound18) {
-			beatSound18 = FMOD_StudioSystem.instance.GetEvent("event:/"+SoudName.BEAT1_8);
+	private EventInstance missSound;
+	public void PlayMissSound(){
+		if (null == missSound) {
+			missSound = FMOD_StudioSystem.instance.GetEvent("event:/"+MISS);
 		}
-		beatSound18.start ();
-	}
-
-	private EventInstance touchSound;
-	public void PlayTouchSound(){
-		if (null == touchSound) {
-			touchSound = FMOD_StudioSystem.instance.GetEvent("event:/"+SoudName.TOUCH);
-		}
-		touchSound.start ();
-	}
-
-	private EventInstance aNormalSound;
-	public void PlayANormalSound(){
-		if (null == aNormalSound) {
-			aNormalSound = FMOD_StudioSystem.instance.GetEvent("event:/"+SoudName.A_Normal);
-		}
-		aNormalSound.start ();
+		missSound.start ();
 	}
 
 	public void PlaySound(string name){
-		if (name == SoudName.A_Normal) {
+		if (name == ATTACK) {
 			PlayANormalSound ();
-		} else if (name == SoudName.BEAT1) {
-			PlayBeatSound1 ();
-		} else if (name == SoudName.BEAT1_2) {
-			PlayBeatSound12();
-		}else if (name == SoudName.BEAT1_4) {
-			PlayBeatSound14();
-		}else if (name == SoudName.BEAT1_8) {
-			PlayBeatSound18();
-		}else if (name == SoudName.A_BEAT) {
+		} else if (name == HURT) {
+			PlayHurtSound ();
+		} else if (name == HERODIE) {
+			PlayHeroDieSound();
+		}else if (name == DIE) {
+			PlayDieSound();
+		}else if (name == MISS) {
+			PlayMissSound();
+		}else if (name == BEATHit) {
 			PlayABeatSound();
-		}else if (name == SoudName.TOUCH) {
-			PlayTouchSound();
+		}else if (name == TIPS) {
+			PlayTipSound();
 		}
 	}
-}
-
-class SoudName{
-	public static string A_BEAT = "A_BEAT";
-
-	public static string A_Normal = "A_Normal";
-
-	public static string A_TIP = "A_TIP";
-
-	public static string BEAT1 = "BEAT1";
-
-	public static string BEAT1_2 = "BEAT1_2";
-
-	public static string BEAT1_4 = "BEAT1_4";
-
-	public static string BEAT1_8 = "BEAT1_8";
-
-	public static string TOUCH = "TOUCH";
 }
 

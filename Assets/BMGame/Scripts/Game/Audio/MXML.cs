@@ -39,7 +39,7 @@ public class MXML{
 	}
 
 	public string[] GetBeatList(){
-		if (listI >= 0) {
+		if (listI >= 0 && null != mbeatList) {
 			return mbeatList.getBeatList(listI);
 		} else {
 			return new string[]{"0"};
@@ -66,7 +66,6 @@ public class MXML{
 			}
 			_allBeatDy.Add(a.Attributes["name"].Value,beatlist);
 		}
-
 	}  
 
 	private void GetAllActorVO(){  

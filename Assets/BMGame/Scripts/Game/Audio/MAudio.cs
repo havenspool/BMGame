@@ -6,6 +6,8 @@ public class MAudio{
 	private MTime mTime;
 	private MXML mxml;
 
+	public bool isShowTip;
+
 	public MAudio(){
 		mTime = new MTime();
 		mxml = CenterInfo.game.gameData.mxml;
@@ -14,6 +16,7 @@ public class MAudio{
 	public MBeatList getMBeatList(){
 		return mxml.getMBeatList ();
 	}
+
 	public int beatListCount{
 		get{
 			return mxml.listCount;
@@ -26,7 +29,7 @@ public class MAudio{
 
 	public string[] beatList{
 		get{
-			if(GetFBeatTime()<mxml.getMBeatList().waitTime){
+			if(mxml.getMBeatList()!=null &&GetFBeatTime()<mxml.getMBeatList().waitTime){
 				SetBeatId(-1);
 			}
 			return mxml.GetBeatList();
@@ -39,7 +42,15 @@ public class MAudio{
 
 	public bool isBeat{
 		get{
-			return IsBeatFrist();
+			if(IsBeatEnd() || IsBeatFrist()){
+				return true;
+			}
+			return false ;
+		}
+	}
+	public float fourBTime{
+		get{
+			return mTime.fourBTime;
 		}
 	}
 	public float getBeatTime{
@@ -61,7 +72,7 @@ public class MAudio{
 	}
 	
 	public bool IsBeatFrist(){
-		if(Util.CF (GetBeenSeconds(),1) <= 0.2f){
+		if(Util.CF (GetBeenSeconds(),2) <= 0.1f){
 			return true;
 		}
 		return false;
@@ -76,10 +87,10 @@ public class MAudio{
 	}
 	
 	public bool IsBeatEnd(){
-		if(Util.CF(GetBeenSeconds(),1) >= Util.CF(mTime.beatTime-0.2f,1)){
+		if(Util.CF(GetBeenSeconds(),1) >= Util.CF(mTime.beatTime-0.1f,1)){
 			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	public bool IsFourBFirst(){
@@ -120,6 +131,13 @@ public class MAudio{
 		return (int)(mTime.fixMusicTime/mTime.fourBTime);
 	}
 
+	public bool IsRatePerfetTime(float rateTime){
+		if ((GetFBeenSeconds() > mTime.fourBTime * rateTime - 0.04f) && (GetFBeenSeconds() < mTime.fourBTime * rateTime + 0.04f)) {
+			return true;
+		}
+		return false;
+	}
+
 	public bool IsRateTime(float rateTime){
 		if ((GetFBeenSeconds() > mTime.fourBTime * rateTime - 0.1f) && (GetFBeenSeconds() < mTime.fourBTime * rateTime + 0.1f)) {
 			return true;
@@ -127,6 +145,11 @@ public class MAudio{
 		return false;
 	}
 
-
+	public bool IsRateAfterTime(float rateTime){
+		if ((GetFBeenSeconds() > mTime.fourBTime * rateTime + 0.1f) && (GetFBeenSeconds() < mTime.fourBTime * rateTime + 0.12f)) {
+			return true;
+		}
+		return false;
+	}
 
 }

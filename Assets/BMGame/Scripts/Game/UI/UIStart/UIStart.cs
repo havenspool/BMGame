@@ -9,7 +9,7 @@ public class UIStart : MonoBehaviour {
 	public Text text;
 
 	void Start(){
-		text.text = "";//Application.persistentDataPath;
+//		text.text = "";Application.persistentDataPath;
 	}
 
 	public void OnStartClick(){

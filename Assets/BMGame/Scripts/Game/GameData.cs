@@ -5,19 +5,16 @@ using System.Collections;
  */
 public class GameData{
 
-	private string[] waveEnemy = {"SlimeS","SlimeM","SlimeL"};
+	private string[] waveEnemy = {"SlimeS","SlimeS","SlimeS"};//,"SlimeM","SlimeS","SlimeL"
 	
 	public float searchTime = 0;
 	public float readyTime = 0;
 	public bool isBeatTouch = false;
 	public bool isGuild = true;
-
 	
 	public enum GameState{start,ready,fight,stop,end}
 	public GameState state;
-
-
-
+	
 	private int thisWave = -1;
 	public string thisWaveName{
 		get{

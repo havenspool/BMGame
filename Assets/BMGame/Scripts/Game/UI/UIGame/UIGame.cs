@@ -7,11 +7,13 @@ using System.Collections;
 public class UIGame : MonoBehaviour {
 
 	public UIMTip uiMTip;
+	public UIMusicTip uiMusicTip;
 	public UIAttackTip uiAttackTip;
 	public UITopTip uiTopTip;
 	public UITextTip uiTextTip;
 
 	public Text bompTxt;
+	public Image heroPower;
 	public Image heroBlood;
 	public Image enemyBlood;
 
@@ -24,13 +26,11 @@ public class UIGame : MonoBehaviour {
 		CenterInfo.uigame = this;
 		ShowStart();
 	}
-	
 	public void OnUpdate () {
 		if(Input.GetKeyDown(KeyCode.Space)){
 			OnAttackDown();
 		}
 	}
-
 	//------------------------tip---------------------------
 	public void ShowAttackTip(){
 		uiAttackTip.ShowTip ();
@@ -38,14 +38,12 @@ public class UIGame : MonoBehaviour {
 	public void StopAttackTip(){
 		uiAttackTip.StopTip ();
 	}
-
 	public void ShowTextTip(string tip){
 		uiTextTip.ShowTip (tip);
 	}
 	public void StopTextTip(){
 		uiTextTip.StopTip ();
 	}
-	
 	public void ShowTopTip(){
 		uiTopTip.ShowTip ();
 	}
@@ -53,9 +51,12 @@ public class UIGame : MonoBehaviour {
 		uiTopTip.StopTip ();
 	}
 	//------------------------------------------------------
-
 	public void HeroBlood(float f){
 		heroBlood.fillAmount = f;
+	}
+
+	public void HeroPower(float f){
+		heroPower.fillAmount = f;
 	}
 
 	public void EnemyBlood(float f){
@@ -84,7 +85,6 @@ public class UIGame : MonoBehaviour {
 	public void ShowEnd(){
 		showReButton();
 		end.SetActive(true);
-//		bompTxt.gameObject.SetActive(false);
 	}
 
 	public void ShowBompTxt(bool bo,string txt){
@@ -122,6 +122,7 @@ public class UIGame : MonoBehaviour {
 
 	public void Clear(){
 		uiMTip.Clear ();
+		uiMusicTip.Clear ();
 	}
 }
 

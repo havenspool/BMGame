@@ -7,10 +7,10 @@ public class AudioManager : MonoBehaviour {
 
 	public AudioClip[] bgMusics;
 
+	private int oneRateBeat = 4;
+
 	[HideInInspector]
-	public int attackTime = 1;
-	[HideInInspector]
-	public int AttackBeatTimer = -1;
+	public int aBeatTimer = -1;
 
 	private AudioSource audioSoure;
 	private MAudio _mAdudio;
@@ -42,7 +42,7 @@ public class AudioManager : MonoBehaviour {
 
 	void Awake(){
 		CenterInfo.audioManager = this;
-		MTime.OffSetStartTime = 0.373f;
+		MTime.OffSetStartTime = 0;//0.373f;
 		audioSoure = GetComponent<AudioSource>();
 	}
 
@@ -65,7 +65,7 @@ public class AudioManager : MonoBehaviour {
 		} else {
 			mAdudio.SetBeatId (-1);
 		}
-		AttackBeatTimer = -1;
+		aBeatTimer = -1;
 	}
 
 	public void AudioRePlay(){
@@ -84,40 +84,32 @@ public class AudioManager : MonoBehaviour {
 		return mAdudio.GetScaleTime();
 	}
 
+	public bool isBeatNoLength{
+		get{
+			if(mAdudio.beatList.Length>1){
+				return false;
+			}else{
+				return true;
+			}
+		}
+	}
+
 	public bool isMusicAttack{
 		get{
 			return mAdudio.IsRateTime(GetRateTime());
 		}
 	}
 
-	public bool isNextEnemyAttack{
+	public bool isMusicPerfet{
 		get{
-			return mAdudio.IsRateTime(GetNextRateTime());
+			return mAdudio.IsRatePerfetTime(GetRateTime());
 		}
 	}
 
-	public string GetMusicAttack(){
-		float aType = GetAType ();
-		if (aType == 1) {
-			return "1b";	
-		} else if (aType == 2) {
-			return "1_2b";	
-		}else if (aType == 4) {
-			return "1_4b";	
+	public bool isMusicAttackAfter{
+		get{
+			return mAdudio.IsRateAfterTime(GetRateTime());
 		}
-		return "idle";
-	}
-
-	public string GetEnemyHurt(){
-		float aType = GetAType ();
-		if (aType == 1) {
-			return "h1b";	
-		} else if (aType == 2) {
-			return "h1_2b";	
-		}else if (aType == 4) {
-			return "h1_4b";	
-		}
-		return "idle";
 	}
 
 	public string GetBeatSoundName(){
@@ -135,86 +127,40 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public float GetAType(){
-		int t = AttackBeatTimer;// - 1
+		float aType = 0;
+		int t = aBeatTimer;
 		if(t>=mAdudio.beatList.Length){
 			t = mAdudio.beatList.Length-1;
 		}
 		if (t <= 0) {
 			t = 0;
 		}
-		float aType = float.Parse(mAdudio.beatList[t]);
+		if (null != mAdudio.beatList [t]) {
+			aType = float.Parse(mAdudio.beatList[t]);
+		}
 		return aType;
-	}
-
-	public float GetNextAType(){
-		int t = GetNextAttackTime ()- 1;
-		if (t <= 0) {
-			t = 0;
-		}
-		if(t>=mAdudio.beatList.Length){
-			t = mAdudio.beatList.Length-1;
-		}
-		float aType = float.Parse(mAdudio.beatList[t]);
-		return aType;
-	}
-
-	public float GetNextRateTime(){
-		float rateTime = 0;
-		for(var i=0;i<GetNextAttackTime();i++){
-			rateTime +=1/float.Parse(mAdudio.beatList[i]);
-		}
-		return (rateTime+1) / oneRateBeat;
 	}
 
 	public float GetRateTime(){
 		float rateTime = 0;
-		for(var i=0;i<AttackBeatTimer;i++){
+		for(var i=0;i<aBeatTimer;i++){
 			rateTime +=1/float.Parse(mAdudio.beatList[i]);
 		}
-		return (rateTime+1) / oneRateBeat;
+		return rateTime / oneRateBeat;
 	}
 
-	private int oneRateBeat = 5;
-
-	public int GetAttackTime(){
-		if(attackTime>=mAdudio.beatList.Length){
-			attackTime = mAdudio.beatList.Length-1;
+	public int AddNextAttackTime(){
+		aBeatTimer = aBeatTimer + 1;
+		if(aBeatTimer>=mAdudio.beatList.Length){
+			aBeatTimer = mAdudio.beatList.Length;
 		}
-		if (attackTime <= 0) {
-			attackTime = 0;
+		if (aBeatTimer <= 0) {
+			aBeatTimer = 0;
 		}
-		return attackTime;
+		return aBeatTimer;
 	}
 
-	public int GetNextAttackTime(){
-		int t = attackTime + 1;
-		if(t>=mAdudio.beatList.Length){
-			t = mAdudio.beatList.Length;
-		}
-		if (t <= 0) {
-			t = 1;
-		}
-		return t;
-	}
-
-	public bool isAttackBeat(){
-		int lg = mAdudio.beatList.Length;
-		float r = mAdudio.GetFourBRate();
-		if (lg > 1) {
-			for (int i =0; i<lg; i++) {
-				float f = GetRateTime (i);
-				if (r > f - 0.02f && r < f + 0.01f) {
-					AttackBeatTimer = i;
-					return true;
-				}
-			}
-		} else {
-			AttackBeatTimer=-1;
-		}
-		return false;
-	}
-
-  	private float GetRateTime(float t){
+	private float GetRateTime(float t){
 		float rateTime = 0;
 		if (t < 0) {
 			t = 0;
@@ -225,7 +171,7 @@ public class AudioManager : MonoBehaviour {
 		for(var i=0;i<t;i++){
 			rateTime +=1/float.Parse(mAdudio.beatList[i]);
 		}
-		return  Util.CF ((rateTime+1) / oneRateBeat, 3);
+		return  Util.CF (rateTime/ oneRateBeat, 3);
 	}
 
 	public bool isBeat{
@@ -239,4 +185,9 @@ public class AudioManager : MonoBehaviour {
 			return mAdudio.getBeatTime;
 		}
 	}
+
+	public void Clear(){
+		aBeatTimer = -1;
+	}
+
 }

@@ -7,7 +7,8 @@ public class MTime{
 	
 	public static float OffSetStartTime = 0;//0.373f;
 	private float normalBPM = 120;//40-180
-	private float bpm = 128;  //60;//
+	private float bpm = 128;//60;
+	private int tipLenght = 4;
 
 	private float startTime;
 	private float tTime;
@@ -25,7 +26,7 @@ public class MTime{
 
 	public float fourBTime{
 		get{
-			return beatTime*5;
+			return beatTime*tipLenght;
 		}
 	}
 

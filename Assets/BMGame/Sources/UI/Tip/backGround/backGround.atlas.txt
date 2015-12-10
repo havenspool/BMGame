@@ -1,0 +1,27 @@
+
+backGround.png
+size: 379,55
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1213
+  rotate: false
+  xy: 2, 29
+  size: 375, 24
+  orig: 375, 24
+  offset: 0, 0
+  index: -1
+hitLight
+  rotate: false
+  xy: 2, 2
+  size: 161, 25
+  orig: 161, 25
+  offset: 0, 0
+  index: -1
+mark
+  rotate: false
+  xy: 165, 2
+  size: 7, 25
+  orig: 7, 25
+  offset: 0, 0
+  index: -1

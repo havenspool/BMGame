@@ -23,18 +23,24 @@ public class ActorEnemy : Actor{
 
 	public void OnUpdate () {
 		if(!CenterInfo.game.gameData.isGameOver){
+			isBlasting = CenterInfo.actorManager.isBlasting();
+			if(CenterInfo.audioManager.mAdudio.IsBeatCenter()){
+				if(actorVO.isCanIdle){
+					SetAnimationIdle();
+				}
+			}
+			if(isBlasting){
+				return;
+			}
 			isFSingle = CenterInfo.audioManager.mAdudio.IsFourSingle ();
 			if(!isFSingle){
-				if(CenterInfo.audioManager.mAdudio.IsBeatCenter()){
-					if(!actorVO.isAttack && !actorVO.isHurt){
-						setAnimation(actorVO.idle,true,false);
-					}
-				}
-				if (CenterInfo.audioManager.isMusicAttack) {
+				CenterInfo.audioManager.mAdudio.isShowTip = false;
+				if (CenterInfo.audioManager.isMusicAttackAfter && !CenterInfo.audioManager.isBeatNoLength) {
 					if(!isHurt && !isBo){
 						isBo = true;
 						isAttack = true;
-						setAnimation(CenterInfo.audioManager.GetMusicAttack(),false,true);
+						setAnimation(actorVO.attackNormal,false,true);
+						CenterInfo.uigame.uiMusicTip.OnShowTip(2);
 						StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => {
 							if(isAttack){
 								CenterInfo.actorManager.OnHeroHurt(1);
@@ -45,13 +51,34 @@ public class ActorEnemy : Actor{
 					isBo = false;
 				}
 			}else{
-				if(CenterInfo.audioManager.mAdudio.IsBeatCenter()){
-					if(!actorVO.isAttack && !actorVO.isHurt){
-						setAnimation(actorVO.ready,false,false);
-					}
+				if(CenterInfo.audioManager.mAdudio.IsBeatCenter() && !CenterInfo.audioManager.isBeatNoLength){
+//					OnShowWarningAnimation();
+				}
+				if(CenterInfo.audioManager.mAdudio.isShowTip){
+					CenterInfo.audioManager.mAdudio.isShowTip = false;
+					OnShowWarningAnimation();
 				}
 			}
 		}
+	}
+
+	public void OnShowWarningAnimation(){
+		if(!actorVO.isAttack && !actorVO.isHurt){
+			CenterInfo.audioManager.PlaySound (MSound.TIPS);
+			setAnimation(actorVO.warning,false,true);
+		}
+	}
+
+	public void onAttack(){
+		setAnimation(actorVO.attackNormal,false,true);
+	}
+
+	public void onPowStart(){
+		setAnimation(actorVO.powStart,false,true);
+	}
+	public void onPowEnd(){
+		setAnimation(actorVO.powEnd,false,true);
+		OnHurt (3);
 	}
 
 	public override void OnHurt(int AttackType){
@@ -59,9 +86,9 @@ public class ActorEnemy : Actor{
 			isAttack = false;
 			isHurt = true;
 			float laterTimer = CenterInfo.audioManager.getBeatTime;
-			if(AttackType==2&&!isFSingle){
+			if((AttackType == 3 || AttackType==2&&!isFSingle) && !CenterInfo.audioManager.isBeatNoLength ){
 				laterTimer = laterTimer*1/3f;
-				setAnimation(CenterInfo.audioManager.GetEnemyHurt(),false,true);
+				setAnimation(actorVO.hurt,false,true);
 			}else{
 				isHurt = false;
 				if(CenterInfo.audioManager.isBeat){
@@ -74,21 +101,20 @@ public class ActorEnemy : Actor{
 				isHurt = false;
 				float hurtBlood = 0f;
 				if(actorVO.blood>0){
-					if(AttackType==1){
-						hurtBlood = actorVO.mActorVO.HurtNoBeat(CenterInfo.actorManager.heroActor.actorVO.attack);
+					if(AttackType==1||AttackType==3){
+						hurtBlood = actorVO.mActorVO.HurtNoBeat(CenterInfo.actorManager.heroActor.actorVO.attackBlood);
 						actorVO.blood -=hurtBlood;
 					}else if(AttackType==2){
 						if(!isFSingle){
-							hurtBlood = actorVO.mActorVO.HurtBroken(CenterInfo.actorManager.heroActor.actorVO.attack);
+							hurtBlood = actorVO.mActorVO.HurtBroken(CenterInfo.actorManager.heroActor.actorVO.attackBlood);
 						}else{
-							hurtBlood = actorVO.mActorVO.HurtBeat(CenterInfo.actorManager.heroActor.actorVO.attack);
+							hurtBlood = actorVO.mActorVO.HurtBeat(CenterInfo.actorManager.heroActor.actorVO.attackBlood);
 						}
 						actorVO.blood -=hurtBlood;
-						
 					}
 				}
 				if(actorVO.blood<=0){
-					actorVO.blood =0;
+					actorVO.blood = 0;
 					setAnimation(actorVO.die,false,false);
 					CenterInfo.game.GameEnemyDead();
 				}
@@ -97,6 +123,6 @@ public class ActorEnemy : Actor{
 			},laterTimer));
 			setColor(1,250/255,250/255,0.9f);
 		}
-	}
+	} 
 }
 

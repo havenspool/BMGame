@@ -1,0 +1,27 @@
+
+hitMark.png
+size: 267,211
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: true
+  xy: 214, 160
+  size: 49, 51
+  orig: 51, 51
+  offset: 1, 0
+  index: -1
+2
+  rotate: false
+  xy: 214, 108
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+hitFX
+  rotate: false
+  xy: 2, 2
+  size: 210, 207
+  orig: 210, 211
+  offset: 0, 2
+  index: -1

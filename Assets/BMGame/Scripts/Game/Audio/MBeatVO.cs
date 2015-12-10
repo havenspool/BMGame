@@ -6,8 +6,6 @@ public class MBeatVO{
 
 	public float randomWait=0.2f;
 
-//	public float beatLater = 0;
-
 	public string attackList = "";
 	
 	public string[] GetBeatList(){
